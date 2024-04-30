@@ -1,0 +1,90 @@
+.Main-h {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  height: 54vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 30px 100px;
+  .board-d {
+    width: 45%;
+    height: 100%;
+    border: 1px solid rgba(red, 0.7);
+    background-color: rgba(pink,0.1);
+    border-radius: 3%;
+    >h2{
+      height: 20%;
+      text-align: center;
+    }
+    .board-d-h{
+      height: 30%;
+      >p{
+        height: 33.33%;
+      }
+    }
+    .board-d-c{
+      height: 50%;
+      >p{
+        height: 20%;
+      }
+    }
+  }
+  .board-f {
+    width: 45%;
+    height: 100%;
+    border: 1px solid rgba(red, 0.7);
+    background-color: rgba(pink,0.1);
+    border-radius: 3%;
+    >h2{
+      height: 20%;
+      text-align: center;
+    }
+    .board-f-h{
+      height: 30%;
+      >p{
+        height: 33.33%;
+      }
+    }
+    .board-f-c{
+      height: 50%;
+      >p{
+        height: 20%;
+      }
+    }
+  }
+}
+.Main-b {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  height: 30vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 30px 250px;
+  .card-e {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 10px;
+    width: 30%;
+    border: 1px solid rgba(red, 0.7);
+    border-radius: 10px;
+    >p:nth-child(2),:nth-child(3){
+      text-align: right;
+    }
+  }
+  .card-y {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 10px;
+    width: 30%;
+    border: 1px solid rgba(red, 0.7);
+    border-radius: 10px;
+    >p:nth-child(2),:nth-child(3){
+      text-align: right;
+    }
+  }
+}
