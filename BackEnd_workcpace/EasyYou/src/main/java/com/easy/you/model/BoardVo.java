@@ -37,6 +37,8 @@ public class BoardVo {
 	@Column(length = 1000)
 	private String content;
 	@Column(length = 1)
+	private String btype;
+	@Column(length = 1)
 	private String delflag;
 	private Date regdate;
 }

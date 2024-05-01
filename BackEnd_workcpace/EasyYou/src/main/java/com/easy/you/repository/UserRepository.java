@@ -6,4 +6,7 @@ import com.easy.you.model.UserVo;
 
 public interface UserRepository extends JpaRepository<UserVo, String>{
 
+	//로그인
+	UserVo findByIdAndPassword(String id, String password);
+
 }
