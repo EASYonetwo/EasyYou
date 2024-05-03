@@ -2,6 +2,7 @@ package com.easy.you.ctrl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,9 @@ public class UserController {
 	
 	//로그인
 	@PostMapping(value = "/login")
-	public UserVo login(String id, String password) {
+	public UserVo login(@RequestBody Map<String, String> loginVo) {
+		String id = loginVo.get("id");
+		String password = loginVo.get("password");
 		return userRepository.findByIdAndPassword(id,password);
 	}
 	
