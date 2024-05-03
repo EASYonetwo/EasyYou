@@ -1,5 +1,6 @@
 package com.easy.you.ctrl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,7 +45,13 @@ public class UserController {
 	//로그인
 	@PostMapping(value = "/login")
 	public UserVo login(String id, String password) {
-		UserVo loginVo = userRepository.findByIdAndPassword(id,password);
-		return loginVo;
+		return userRepository.findByIdAndPassword(id,password);
+	}
+	
+	//회원가입
+	@PostMapping(value = "/join")
+	public UserVo join(@RequestBody UserVo joinVo) {
+		joinVo.setJoindate(new Date());
+		return userRepository.save(joinVo);
 	}
 }

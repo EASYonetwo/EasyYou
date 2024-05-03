@@ -2,12 +2,24 @@ package com.easy.you.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.easy.you.model.BoardLikesVo;
-import com.easy.you.model.BoardVo;
+import com.easy.you.model.BoardRepositoryInterface;
 
 public interface BoardLikesRepository extends JpaRepository<BoardLikesVo, Long>{
-	
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate "
+			+ "FROM BoardVo b JOIN BoardLikesVo bl ON b.boardseq = bl.board.boardseq "
+			+ "WHERE b.btype = 'R' AND b.delflag = 'N' " + "GROUP BY b.boardseq "
+			+ "ORDER BY COUNT(bl.board.boardseq) DESC")
+	List<BoardRepositoryInterface> findTop3MostLikedByBtypeR(Pageable pageable);
+
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate "
+			+ "FROM BoardVo b JOIN BoardLikesVo bl ON b.boardseq = bl.board.boardseq "
+			+ "WHERE b.btype = 'F' AND b.delflag = 'N' " + "GROUP BY b.boardseq "
+			+ "ORDER BY COUNT(bl.board.boardseq) DESC")
+	List<BoardRepositoryInterface> findTop3MostLikedByBtypeF(Pageable pageable);
 }
+
