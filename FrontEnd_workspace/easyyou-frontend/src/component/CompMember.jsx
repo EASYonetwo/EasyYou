@@ -1,27 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import UserService from '../service/UserSerive';
+import { useNavigate } from 'react-router-dom';
 
 const CompMember = () => {
+  const [_id, _setId] = useState()
+  const [_pw, _setPw] = useState()
+  const [_sel, _setSel] = useState()
+  const navigate = useNavigate()
+  function fnIdCheck(e) {
+    e.preventDefault();
+    UserService.idCheck(_id).then(res => {
+      return (res.data === 0) ? fnAvailableId() : fnOverlapId()
+    })
+  }
+  function fnAvailableId() {
+    if (_id === undefined) {
+      alert('아이디를 입력해 주세요')
+      document.querySelector('.Member_id > input').focus()
+    }
+    else {
+      if (window.confirm('사용하시겠습니까?') === true) {
+        document.querySelector('.Member_pw > input').removeAttribute('disabled')
+        document.querySelector('.Member_pw > input').focus()
+      }
+      else {
+        document.querySelector('.Member_id > input').focus()
+        _setId()
+      }
+    }
+  }
+  function fnOverlapId() {
+    alert('중복입니다')
+    _setId()
+    document.querySelector('.Member_id > input').focus()
+  }
+  function fnComplete(e) {
+    e.preventDefault()
+    let result 
+    if(_sel==="You's"){
+      result='U'
+    }
+    else{
+      result='L'
+    }
+    
+    const data = {
+      id:_id,
+      password:_pw,
+      auth:result
+    }
+    UserService.join(data);
+    alert('회원가입완료')
+    navigate('/login')
+  }
+  
+  useEffect(() => {
+    if (_pw !== undefined && _pw !== '') {
+      document.querySelector('.Member_btn').removeAttribute('disabled')
+    }
+    else {
+      document.querySelector('.Member_btn').setAttribute('disabled', true)
+    }
+  })
   return (
     <div className='Member_main'>
-      <form className='Member_box'>
+      <form onSubmit={fnComplete} className='Member_box'>
         <h3>회원가입</h3>
         <div className='Member_id'>
           <span>아이디*</span>
-          <input type="text" placeholder='아이디를 입력해 주세요'/>
-          <button onClick={(e)=>{e.preventDefault() ;alert()}}>중복검사</button>
+          <input type="text" value={_id || ''} onChange={e => _setId(e.target.value)} placeholder='아이디를 입력해 주세요' required />
+          <button onClick={fnIdCheck}>중복검사</button>
         </div>
         <div className='Member_pw'>
           <span>비밀번호*</span>
-          <input type="text" placeholder='비밀번호를 입력해 주세요'/>
+          <input type="text" value={_pw || ''} onChange={e => _setPw(e.target.value)} placeholder='비밀번호를 입력해 주세요' disabled required />
         </div>
         <div className='port_se'>
           <span>누구의 포트폴리오를 보고 싶으십니까?</span>
-          <select name="portfolio">
+          <select name="portfolio" onClick={() => { _setSel(document.querySelector('.port_se > select').value) }} >
             <option value="Easy's">Easy's</option>
             <option value="You's">You's</option>
           </select>
         </div>
-        <button className='Member_btn' onClick={(e)=>{e.preventDefault() ;alert('회원가입완료')}}>회원가입</button>
+        <button className='Member_btn' disabled>회원가입</button>
       </form>
     </div>
   );
