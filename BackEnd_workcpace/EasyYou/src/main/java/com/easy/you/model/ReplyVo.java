@@ -39,4 +39,8 @@ public class ReplyVo {
 	private Date regdate;
 	@Column(length = 1)
 	private String delflag;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private UserVo user;
 }

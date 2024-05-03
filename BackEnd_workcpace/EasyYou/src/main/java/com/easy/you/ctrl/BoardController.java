@@ -1,7 +1,8 @@
 package com.easy.you.ctrl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.easy.you.model.BoardRepositoryInterface;
+import com.easy.you.model.BoardRepositoryInterfaceCommon;
+import com.easy.you.model.BoardRepositoryInterfaceFile;
 import com.easy.you.model.BoardVo;
 import com.easy.you.repository.BoardLikesRepository;
 import com.easy.you.repository.BoardRepository;
+
 
 @RestController
 @RequestMapping(value = "api/v1/")
@@ -27,35 +31,43 @@ public class BoardController {
 	@Autowired
 	private BoardLikesRepository boardLikesRepository;
 	
-	//댓글 게시판
+	//메인화면
+	//댓글 게시판 - 메인
 	@GetMapping(value = "/main/board/reply")
-	public List<Object> likesAndNewRBoard(){
+	public Map<String, Object> likesAndNewRBoard(){
 		Pageable pageable = PageRequest.of(0, 3);
 		List<BoardRepositoryInterface> likesPosts = boardLikesRepository.findTop3MostLikedByBtypeR(pageable);
 		List<BoardVo> latestPosts = boardRepository.findTop5ByBtypeOrderByRegdateDesc("R");
-		List<Object> mainBoardReply = new ArrayList<Object>();
-		for(BoardRepositoryInterface likeb : likesPosts) {
-			mainBoardReply.add(likeb);
-		}
-		for(BoardVo latestb : latestPosts) {
-			mainBoardReply.add(latestb);
-		}
-		return mainBoardReply;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("like", likesPosts);
+		map.put("latest", latestPosts);
+		return map;
 	}
 	
-	// 파일 게시판
+	// 파일 게시판 - 메인
 	@GetMapping(value = "/main/board/file")
-	public List<Object> likesAndNewFBoard() {
+	public Map<String, Object> likesAndNewFBoard() {
 		Pageable pageable = PageRequest.of(0, 3);
-		List<BoardRepositoryInterface> likesPosts = boardLikesRepository.findTop3MostLikedByBtypeF(pageable);
-		List<BoardVo> latestPosts = boardRepository.findTop5ByBtypeOrderByRegdateDesc("F");
-		List<Object> mainBoardFile = new ArrayList<Object>();
-		for (BoardRepositoryInterface likeb : likesPosts) {
-			mainBoardFile.add(likeb);
-		}
-		for (BoardVo latestb : latestPosts) {
-			mainBoardFile.add(latestb);
-		}
-		return mainBoardFile;
+		List<BoardRepositoryInterfaceFile> likesPosts = boardLikesRepository.findTop3MostLikedByBtypeF(pageable);
+		List<BoardRepositoryInterfaceFile> latestPosts = boardRepository.findTop5ByBtypeOrderByRegdateDesc(PageRequest.of(0, 5));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("like", likesPosts);
+		map.put("latest", latestPosts);
+		return map;
+	}
+	
+	//게시판
+	//댓글 게시판
+	//전체 조회
+	@GetMapping(value = "/board/reply")
+	public List<BoardRepositoryInterfaceCommon> getAllReplyBoard(){
+		return boardRepository.findByReplyOrderByRegdateDesc();
+	}
+	
+	//파일 게시판
+	//전체 조회
+	@GetMapping(value = "/board/file")
+	public List<BoardRepositoryInterfaceCommon> getAllFileBoard() {
+		return boardRepository.findByFileOrderByRegdateDesc();
 	}
 }
