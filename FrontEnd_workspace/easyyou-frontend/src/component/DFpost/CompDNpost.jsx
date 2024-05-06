@@ -1,12 +1,13 @@
 import React from 'react';
 
-const CompDNpost = () => {
+const CompDNpost = ({data}) => {
+  const { title , user,regdate} = data
   return (
     <div className='Dpost'>
       <span className='New'>New</span>
-      <p className='Text'>제목</p>
-      <p className='Person'>작성자</p>
-      <p className='Day'>날짜</p>
+      <p className='Text'>{title}</p>
+      <p className='Person'>{user.id}</p>
+      <p className='Day'>{regdate.split('T15',1)}</p>
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import React from 'react';
-
-const CompFNpost = () => {
+const CompFNpost = ({data}) => {
+   const {file,title,user,regdate} = data
   return (
     <div className='Fpost'>
-      <span className='New'>New</span>
-      <p className='Mimg'><img src="" alt="" />이미지</p>
-      <p className='Text'>제목</p>
-      <p className='Person'>작성자</p>
-      <p className='Day'>날짜</p>
+      <span className='New'> New</span>
+      <p className='Mimg'><img src='' alt="" onClick={()=>{window.open({file})}}/></p>
+      <p className='Text'>{title}</p>
+      <p className='Person'>{user.id}</p>
+      <p className='Day'>{regdate.split('T15',1)}</p>
     </div>
+    
   );
 };
 

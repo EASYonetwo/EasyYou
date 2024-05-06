@@ -36,24 +36,24 @@ const CompMember = () => {
   }
   function fnComplete(e) {
     e.preventDefault()
-    let result 
-    if(_sel==="You's"){
-      result='U'
+    let result
+    if (_sel === "You's") {
+      result = 'U'
     }
-    else{
-      result='L'
+    else {
+      result = 'L'
     }
-    
+
     const data = {
-      id:_id,
-      password:_pw,
-      auth:result
+      id: _id,
+      password: _pw,
+      auth: result
     }
     UserService.join(data);
     alert('회원가입완료')
     navigate('/login')
   }
-  
+
   useEffect(() => {
     if (_pw !== undefined && _pw !== '') {
       document.querySelector('.Member_btn').removeAttribute('disabled')
@@ -68,18 +68,18 @@ const CompMember = () => {
         <h3>회원가입</h3>
         <div className='Member_id'>
           <span>아이디*</span>
-          <input type="text" value={_id || ''} onChange={e => _setId(e.target.value)} placeholder='아이디를 입력해 주세요' required />
+          <input type="text" value={_id || ''} onChange={e => _setId(e.target.value)} placeholder='아이디를 입력해 주세요' maxLength='8' required />
           <button onClick={fnIdCheck}>중복검사</button>
         </div>
         <div className='Member_pw'>
           <span>비밀번호*</span>
-          <input type="text" value={_pw || ''} onChange={e => _setPw(e.target.value)} placeholder='비밀번호를 입력해 주세요' disabled required />
+          <input type="text" value={_pw || ''} onChange={e => _setPw(e.target.value)} placeholder='비밀번호를 입력해 주세요' maxLength='8' disabled required />
         </div>
         <div className='port_se'>
           <span>누구의 포트폴리오를 보고 싶으십니까?</span>
           <select name="portfolio" onClick={() => { _setSel(document.querySelector('.port_se > select').value) }} >
-            <option value="Easy's">Easy's</option>
-            <option value="You's">You's</option>
+            <option value="Easy's">유태경</option>
+            <option value="You's">이지원</option>
           </select>
         </div>
         <button className='Member_btn' disabled>회원가입</button>

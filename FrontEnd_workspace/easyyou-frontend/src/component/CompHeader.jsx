@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../App';
 
 const CompHeader = () => {
-  const [_login, _setLogin] = useState(false)
+  const {_isLogin,_setIsLogin,_loginId} = useContext(AppContext)
 
-  const fnClickHander = ((e) => {
+
+  function fnClickHander(e) {
     e.preventDefault()
     document.querySelector(`.Board_main >.Board_aco`).classList.toggle('active')
-  })
+  }
 
-  const fnCancleHander = (() => {
+  function fnCancleHander() {
     document.querySelector(`.Board_main >.Board_aco`).classList.remove('active')
-  })
+  }
+  function fnLogOut (){
+    _setIsLogin(false)
+  }
 
-  const fnChangeHander=(()=>{
-    _setLogin(v=>!v)
-  })
+
 
   return (
     <div className='header'>
@@ -29,19 +32,19 @@ const CompHeader = () => {
               <li onClick={fnCancleHander}><Link to="/BoardF">파일게시판</Link></li>
             </ul>
           </li>
-          <li className='main_btn' onClick={fnCancleHander}><Link to="/EasyPort">Easy's 포트폴리오</Link></li>
-          <li className='main_btn' onClick={fnCancleHander}><Link to="/YouPort">You's 포트폴리오</Link></li>
-          <li className='login-l' onClick={fnCancleHander}>
+          <li className='main_btn'><Link to="/EasyPort">유태경의 포트폴리오</Link></li>
+          <li className='main_btn'><Link to="/YouPort">이지원의 포트폴리오</Link></li>
+          <li className='login-l'>
             <ul>
               {
-                (_login === true) ? <li>로그인정보</li> : <li><Link  onClick={fnChangeHander} to="/Login">로그인</Link></li>
+                (_isLogin === true) ? <li>{_loginId}님 안녕하세요 </li> : <li><Link to="/Login">로그인</Link></li>
               }
             </ul>
           </li>
-          <li className='login-r' onClick={fnCancleHander}>
+          <li className='login-r'>
             <ul>
               {
-                (_login === true) ? <li><Link  onClick={fnChangeHander} to="/">로그아웃</Link></li> : <li><Link to="/Member">회원가입</Link></li>
+                (_isLogin === true) ? <li><Link to="/" onClick={fnLogOut}>로그아웃</Link></li> : <li><Link to="/Member">회원가입</Link></li>
               }
             </ul>
           </li>
