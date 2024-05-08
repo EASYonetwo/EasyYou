@@ -41,5 +41,6 @@ public class FileStorageVo {
 	private String enabled;
 	
 	@Lob
-	private String file;
+	@Column(columnDefinition = "MEDIUMBLOB")
+	private byte[] file;
 }
