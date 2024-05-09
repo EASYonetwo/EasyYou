@@ -84,6 +84,10 @@
   height: 100%;
   color: black;
 }
+.nav .Board_main .Board_aco > li > a:hover {
+  cursor: pointer;
+  color: red;
+}
 .nav .login-l {
   width: 15%;
 }

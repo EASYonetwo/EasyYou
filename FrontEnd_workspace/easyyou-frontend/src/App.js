@@ -13,22 +13,22 @@ import CompBoardDI from './component/BoardD/CompBoardDI';
 export const AppContext = createContext()
 
 function UserId() {
-  let userId
+  let user
   let userLogin
   if (window.localStorage.getItem('UserStorage')) {
-    userId = JSON.parse(window.localStorage.getItem('UserStorage'))
+    user = JSON.parse(window.localStorage.getItem('UserStorage'))
     userLogin = true
   }
   else {
-    userId = ''
+    user = ''
     userLogin = false
   }
-  return { userId, userLogin }
+  return { user, userLogin }
 }
 
 function App() {
   const [_isLogin, _setIsLogin] = useState(UserId().userLogin)
-  const [_loginId, _setLoginId] = useState(UserId().userId.id)
+  const [_loginId, _setLoginId] = useState(UserId().user.id)
 
   useEffect(() => {
     setTimeout(() => {
