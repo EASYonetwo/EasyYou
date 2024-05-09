@@ -1,29 +1,159 @@
-.BoardD-t {
-  position: relative;
-  z-index: 1;
-  width: 80%;
-  height: 10vh;
-  margin: 0 auto;
-  text-align: center;
-  line-height: 10vh;
-  > button {
-    position: absolute;
-    top: 50%;
-    right: calc(3% + 100px);
-    width: 7%;
-    transform: translate(0, -50%);
+.BoardD {
+  width: 100vw;
+  height: 84vh;
+  .BoardD-t {
+    position: relative;
+    z-index: 1;
+    width: calc(80% - 200px);
+    height: 10%;
+    margin: 0 auto;
+    text-align: center;
+    > h3 {
+      height: 100%;
+      line-height: 8.4vh;
+      font-size: 1.5em;
+    }
+    > button {
+      position: absolute;
+      z-index: 20;
+      bottom: 0;
+      right: 0;
+      width: 8%;
+      height: 40%;
+    }
+  }
+  .BoardD-m {
+    position: relative;
+    width: calc(80% - 200px);
+    height: 10%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    > select {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 5%;
+      height: 35%;
+      transform: translate(0, -50%);
+      border-radius: 0;
+    }
+    > span {
+      position: absolute;
+      top: 50%;
+      right: 15%;
+      transform: translate(0, -50%);
+    }
+    > input {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 15%;
+      height: 35%;
+      transform: translate(0, -50%);
+      box-sizing: border-box;
+      padding: 5px;
+      border-radius: 0;
+    }
+  }
+  .BoardD-b {
+    width: 80%;
+    height: 64vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 100px;
+    .BoardD-table {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      border-collapse: collapse;
+      > thead {
+        > tr {
+          border-bottom: 2px solid #ccc;
+        }
+      }
+      > tbody {
+        > tr {
+          border-top: 1px solid #ccc;
+        }
+      }
+    }
+  }
+  .page-nav {
+    display: flex;
+    justify-content: center;
+    > button {
+      width: 30px;
+      margin: 0 30px;
+      border: none;
+      &.active{
+        color:red;
+      }
+    }
   }
 }
-.BoardD-b {
-  width: 80%;
-  height: 74vh;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 0 100px;
-  > div {
-    width: 100%;
-    height: 100%;
-    border: 2px solid black;
+.BoardF { 
+  width: 100vw;
+  height: 84vh;
+  .BoardF-t {
+    position: relative;
+    z-index: 1;
+    width: calc(80% - 200px);
+    height: 10%;
+    margin: 0 auto;
+    text-align: center;
+    > h3 {
+      height: 100%;
+      line-height: 8.4vh;
+      font-size: 1.5em;
+    }
+    > button {
+      position: absolute;
+      z-index: 20;
+      bottom: 0;
+      right: 0;
+      width: 8%;
+      height: 40%;
+    }
+  }
+  .BoardF-b {
+    width: 80%;
+    height: 64vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 100px;
+    margin-top: 50px;
+    .BoardF-table {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      border-collapse: collapse;
+      > thead {
+        > tr {
+          border-bottom: 2px solid #ccc;
+        }
+      }
+      > tbody {
+        > tr {
+          border-top: 1px solid #ccc;
+        }
+      }
+    }
+  }
+  .page-nav {
+    display: flex;
+    justify-content: center;
+    > button {
+      width: 30px;
+      margin: 0 30px;
+      border: none;
+      &.active{
+        color:red;
+      }
+    }
   }
 }
 
@@ -91,11 +221,15 @@
   .Text {
     flex: 1;
     margin-left: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .Person {
     width: 20%;
     text-align: center;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
   .Day {
@@ -132,11 +266,15 @@
   }
   .Text {
     flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .Person {
     width: 20%;
     text-align: center;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
   .Day {

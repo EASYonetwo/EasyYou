@@ -7,7 +7,7 @@ const CompDHpost = ({data}) => {
       <span className='Hot'>Hot</span>
       <p className='Text'>{title}</p>
       <p className='Person'>{user.id}</p>
-      <p className='Day'>{regdate.split('T15',1)}</p>
+      <p className='Day'>{regdate.split('T',1)}</p>
     </div>
   );
 };

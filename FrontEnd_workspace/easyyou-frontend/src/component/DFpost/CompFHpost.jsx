@@ -8,7 +8,7 @@ const CompFHpost = ({data}) => {
       <p className='Mimg'><img src='' alt="" onClick={()=>{window.open({file})}}/></p>
       <p className='Text'>{title}</p>
       <p className='Person'>{user.id}</p>
-      <p className='Day'>{regdate.split('T15',1)}</p>
+      <p className='Day'>{regdate.split('T',1)}</p>
     </div>
   );
 };
