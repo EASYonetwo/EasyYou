@@ -11,5 +11,6 @@ public interface BoardRepositoryInterfaceFile {
 	String getBtype();
 	String getDelflag();
 	Date getRegdate();
-	String getFile();
+	byte[] getFile();
+	long getFileBoardseq();
 }
