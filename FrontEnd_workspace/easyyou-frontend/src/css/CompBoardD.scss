@@ -87,13 +87,13 @@
       width: 30px;
       margin: 0 30px;
       border: none;
-      &.active{
-        color:red;
+      &.active {
+        color: red;
       }
     }
   }
 }
-.BoardF { 
+.BoardF {
   width: 100vw;
   height: 84vh;
   .BoardF-t {
@@ -150,14 +150,14 @@
       width: 30px;
       margin: 0 30px;
       border: none;
-      &.active{
-        color:red;
+      &.active {
+        color: red;
       }
     }
   }
 }
 
-.BoardD_I-t {
+.BoardDI-t {
   position: relative;
   width: 80%;
   height: 10vh;
@@ -167,23 +167,53 @@
   > button {
     position: absolute;
     top: 50%;
-    left: calc(3% + 100px);
+    left: 100px;
     width: 7%;
     transform: translate(0, -50%);
   }
 }
-.BoardD_I-b {
+.BoardDI-b {
   position: relative;
   width: 80%;
-  height: 74vh;
+  height: 64vh;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 100px;
   > div {
-    width: 100%;
-    height: 100%;
-    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    > span:nth-child(1) {
+      display: inline-block;
+      width: 10%;
+    }
   }
+  .person {
+    height: 10%;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+  }
+  .title {
+    height: 10%;
+    > input {
+      width: 75%;
+      height: 50%;
+      padding: 0 5px;
+      box-sizing: border-box;
+    }
+  }
+  .content {
+    height: 80%;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    > textarea {
+      width: 85%;
+      height: 80%;
+      resize: none;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+  }
+
   .Bbtn-u {
     position: absolute;
     bottom: 3%;
@@ -197,6 +227,17 @@
     left: 53%;
     width: 5%;
     transform: translate(-50%, 0);
+  }
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  >button{
+    width: 5%;
+    height: 50%;
+    margin: 0 10px;
   }
 }
 

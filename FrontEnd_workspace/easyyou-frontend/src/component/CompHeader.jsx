@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppContext } from '../App';
 
 const CompHeader = () => {
-  const { _isLogin, _setIsLogin, _loginId } = useContext(AppContext)
+  const { _isLogin, _setIsLogin,_setLoginId, _loginId } = useContext(AppContext)
 
 
   function fnClickHander(e) {
@@ -16,6 +16,7 @@ const CompHeader = () => {
   }
   function fnLogOut() {
     _setIsLogin(false)
+    _setLoginId()
   }
 
 

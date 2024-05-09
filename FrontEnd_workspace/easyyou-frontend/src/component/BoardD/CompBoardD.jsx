@@ -5,12 +5,44 @@ import CompBoardDT from './CompBoardDT';
 
 
 const CompBoardD = () => {
-  const [_data, _setData] = useState()
-  const [_showPage, _setShowPage] = useState(3)
+  const [_numScreen, _setNumScreen] = useState(3)
   const [_currentPage, _setCurrentPage] = useState(1)
   const [_totalPage, _setTotalPage] = useState()
+  const [_searchData, _setSearchData] = useState()
+  const [_search, _setSearch] = useState()
   const [_arr, _setArr] = useState()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    BoardService.getReplyBoardAll().then(res => {
+      let firstBoard = ((_currentPage - 1) * _numScreen)
+      let lastBoard = _currentPage * _numScreen
+      let totalPage = Math.ceil((res.data.length) / _numScreen)
+      let arr = Array.from({ length: totalPage })
+      _setTotalPage(totalPage)
+      _setArr(arr)
+      document.querySelector('.page-nav > button').classList.remove('active')
+      document.querySelectorAll('.page-nav > button').forEach(v => {
+        if (_currentPage === parseInt(v.value)) {
+          v.classList.add('active')
+        }
+      })
+      if(_search!==undefined){
+        firstBoard = ((_currentPage - 1) * _numScreen)
+        lastBoard = _currentPage * _numScreen
+        let searchData = res.data.filter(v => v.title.toLowerCase().includes(_search))
+        let totalSearchPage = Math.ceil((searchData.length) / _numScreen)
+        let searchArr = Array.from({ length: totalSearchPage })
+        _setSearchData(searchData.slice(firstBoard, lastBoard))
+        _setArr(searchArr)
+      }
+      else{
+        _setSearchData(res.data.slice(firstBoard, lastBoard))
+      }
+      
+    })
+
+  }, [_currentPage, _numScreen, _search])
 
   function fnClickBtn(e) {
     _setCurrentPage(parseInt(e.target.value))
@@ -19,7 +51,6 @@ const CompBoardD = () => {
     })
     e.target.classList.add('active')
   }
-
   function fnClickPrev() {
     document.querySelectorAll('.page-nav > button').forEach(v => {
       v.classList.remove('active')
@@ -36,7 +67,6 @@ const CompBoardD = () => {
       _setCurrentPage(v => v - 1)
     }
   }
-
   function fnClickNext() {
     document.querySelectorAll('.page-nav > button').forEach(v => {
       v.classList.remove('active')
@@ -53,27 +83,10 @@ const CompBoardD = () => {
       })
     }
   }
+  function fnSearch(e) {
+    _setSearch((e.target.value.toLowerCase()))
+  }
 
-
-
-  useEffect(() => {
-    BoardService.getReplyBoardAll().then(res => {
-      let firstBoard = ((_currentPage - 1) * _showPage)
-      let lastBoard = _currentPage * _showPage
-      let totalPage = Math.ceil((res.data.length) / _showPage)
-      let arr = Array.from({ length: totalPage })
-      _setTotalPage(totalPage)
-      _setArr(arr)
-      _setData(res.data.slice(firstBoard, lastBoard))
-      document.querySelector('.page-nav > button').classList.remove('active')
-      document.querySelectorAll('.page-nav > button').forEach(v => {
-        if (_currentPage === parseInt(v.value)) {
-          v.classList.add('active')
-        }
-      })
-    })
-
-  }, [_currentPage, _showPage])
 
   return (
     <div className='BoardD'>
@@ -82,12 +95,13 @@ const CompBoardD = () => {
         <button onClick={() => { navigate('/BoardDI') }}>글작성</button>
       </div>
       <div className='BoardD-m'>
-        <select onClick={(e) => { _setShowPage(e.target.value) }}>
+        <select onClick={(e) => { _setNumScreen(e.target.value) }}>
           <option value="3">3</option>
           <option value="6">6</option>
         </select>
         <span>검색:</span>
-        <input type="text" />
+        <input type="text" value={_search||''} onChange={fnSearch} />
+
       </div>
       <div className='BoardD-b'>
         <table className="BoardD-table">
@@ -103,17 +117,16 @@ const CompBoardD = () => {
           </thead>
           <tbody>
             {
-              (_data) &&
-              _data.map((v, index) => <CompBoardDT data={v} key={index} />)
+              (_searchData)&&
+              _searchData.map((v, index) => <CompBoardDT data={v} key={index} />)
             }
           </tbody>
         </table>
       </div>
       <div className='page-nav'>
-      <button onClick={fnClickPrev}>이전</button>
+        <button onClick={fnClickPrev}>이전</button>
         {
           (_arr) && _arr.map((v, index) => <button onClick={fnClickBtn} key={index} value={index + 1}>{index + 1}</button>)
-
         }
         <button onClick={fnClickNext}>다음</button>
       </div>
