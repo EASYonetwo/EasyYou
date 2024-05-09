@@ -1,31 +1,153 @@
-.BoardD-t {
+.BoardD {
+  width: 100vw;
+  height: 84vh;
+}
+.BoardD .BoardD-t {
   position: relative;
   z-index: 1;
-  width: 80%;
-  height: 10vh;
+  width: calc(80% - 200px);
+  height: 10%;
   margin: 0 auto;
   text-align: center;
-  line-height: 10vh;
 }
-.BoardD-t > button {
+.BoardD .BoardD-t > h3 {
+  height: 100%;
+  line-height: 8.4vh;
+  font-size: 1.5em;
+}
+.BoardD .BoardD-t > button {
+  position: absolute;
+  z-index: 20;
+  bottom: 0;
+  right: 0;
+  width: 8%;
+  height: 40%;
+}
+.BoardD .BoardD-m {
+  position: relative;
+  width: calc(80% - 200px);
+  height: 10%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.BoardD .BoardD-m > select {
   position: absolute;
   top: 50%;
-  right: calc(3% + 100px);
-  width: 7%;
+  left: 0;
+  width: 5%;
+  height: 35%;
+  transform: translate(0, -50%);
+  border-radius: 0;
+}
+.BoardD .BoardD-m > span {
+  position: absolute;
+  top: 50%;
+  right: 15%;
   transform: translate(0, -50%);
 }
-
-.BoardD-b {
+.BoardD .BoardD-m > input {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 15%;
+  height: 35%;
+  transform: translate(0, -50%);
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 0;
+}
+.BoardD .BoardD-b {
   width: 80%;
-  height: 74vh;
+  height: 64vh;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 100px;
 }
-.BoardD-b > div {
+.BoardD .BoardD-b .BoardD-table {
   width: 100%;
   height: 100%;
-  border: 2px solid black;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
+}
+.BoardD .BoardD-b .BoardD-table > thead > tr {
+  border-bottom: 2px solid #ccc;
+}
+.BoardD .BoardD-b .BoardD-table > tbody > tr {
+  border-top: 1px solid #ccc;
+}
+.BoardD .page-nav {
+  display: flex;
+  justify-content: center;
+}
+.BoardD .page-nav > button {
+  width: 30px;
+  margin: 0 30px;
+  border: none;
+}
+.BoardD .page-nav > button.active {
+  color: red;
+}
+
+.BoardF {
+  width: 100vw;
+  height: 84vh;
+}
+.BoardF .BoardF-t {
+  position: relative;
+  z-index: 1;
+  width: calc(80% - 200px);
+  height: 10%;
+  margin: 0 auto;
+  text-align: center;
+}
+.BoardF .BoardF-t > h3 {
+  height: 100%;
+  line-height: 8.4vh;
+  font-size: 1.5em;
+}
+.BoardF .BoardF-t > button {
+  position: absolute;
+  z-index: 20;
+  bottom: 0;
+  right: 0;
+  width: 8%;
+  height: 40%;
+}
+.BoardF .BoardF-b {
+  width: 80%;
+  height: 64vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 100px;
+  margin-top: 50px;
+}
+.BoardF .BoardF-b .BoardF-table {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr {
+  border-bottom: 2px solid #ccc;
+}
+.BoardF .BoardF-b .BoardF-table > tbody > tr {
+  border-top: 1px solid #ccc;
+}
+.BoardF .page-nav {
+  display: flex;
+  justify-content: center;
+}
+.BoardF .page-nav > button {
+  width: 30px;
+  margin: 0 30px;
+  border: none;
+}
+.BoardF .page-nav > button.active {
+  color: red;
 }
 
 .BoardD_I-t {
@@ -94,11 +216,15 @@
 .Dpost .Text {
   flex: 1;
   margin-left: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .Dpost .Person {
   width: 20%;
   text-align: center;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .Dpost .Day {
@@ -134,11 +260,15 @@
 }
 .Fpost .Text {
   flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .Fpost .Person {
   width: 20%;
   text-align: center;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .Fpost .Day {

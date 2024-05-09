@@ -9,6 +9,7 @@ import CompEasy from './component/Portfolio/CompEasy';
 import CompLogin from './component/CompLogin';
 import CompMember from './component/CompMember';
 import { createContext, useEffect, useState } from 'react';
+import CompBoardDI from './component/BoardD/CompBoardDI';
 export const AppContext = createContext()
 
 function UserId() {
@@ -42,6 +43,7 @@ function App() {
           <Routes>
             <Route path='/' element={<CompMain />} />
             <Route path='/BoardD' element={<CompBoardD />} />
+            <Route path='/BoardDI' element={<CompBoardDI/>}/>
             <Route path='/BoardF' element={<CompBoardF />} />
             <Route path='/YouPort' element={<CompYou />} />
             <Route path='/EasyPort' element={<CompEasy />} />
