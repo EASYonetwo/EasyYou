@@ -10,8 +10,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +26,12 @@ import com.easy.you.model.BoardRepositoryInterfaceCommon;
 import com.easy.you.model.BoardRepositoryInterfaceFile;
 import com.easy.you.model.BoardVo;
 import com.easy.you.model.FileStorageVo;
+import com.easy.you.model.ReplyRepositoryInterface;
 import com.easy.you.model.UserVo;
 import com.easy.you.repository.BoardLikesRepository;
 import com.easy.you.repository.BoardRepository;
 import com.easy.you.repository.FileStorageRepository;
+import com.easy.you.repository.ReplyRepository;
 
 
 @RestController
@@ -43,6 +47,9 @@ public class BoardController {
 	
 	@Autowired
 	private FileStorageRepository fileStorageRepository;
+	
+	@Autowired
+	private ReplyRepository replyRepository;
 	
 	//메인화면
 	//댓글 게시판 - 메인
@@ -63,25 +70,25 @@ public class BoardController {
 		List<BoardRepositoryInterfaceFile> likesPostsTest = boardLikesRepository.findTop3MostLikedByBtypeF();
 		List<BoardRepositoryInterfaceFile> likesPosts = new ArrayList<BoardRepositoryInterfaceFile>();
 		likesPosts.add(likesPostsTest.get(0));
+		int j=0;
 		for(int i=1; i<likesPostsTest.size(); i++) {
-			if (likesPostsTest.get(i).getFileBoardseq() != likesPosts.get(i - 1).getFileBoardseq()) {
+			if (likesPostsTest.get(i).getBoardseq() != likesPosts.get(j).getBoardseq()) {
 				likesPosts.add(likesPostsTest.get(i));
-			} else {
-				break;
+				j++;
 			}
 			if(likesPosts.size()==3) {break;}
 		}
-		List<BoardRepositoryInterfaceFile> latestPosts = boardRepository.findTop5ByFileOrderByRegdateDesc();
-//		List<BoardRepositoryInterfaceFile> latestPosts = new ArrayList<BoardRepositoryInterfaceFile>();
-//		latestPosts.add(latestPostsTest.get(0));
-//		for(int i=1; i<latestPostsTest.size(); i++) {
-//			if (latestPostsTest.get(i).getFileBoardseq() != latestPosts.get(i - 1).getFileBoardseq()) {
-//				latestPosts.add(latestPostsTest.get(i));
-//			} else {
-//				break;
-//			}
-//			if(latestPosts.size()==5) {break;}
-//		}
+		List<BoardRepositoryInterfaceFile> latestPostsTest = boardRepository.findTop5ByFileOrderByRegdateDesc();
+		List<BoardRepositoryInterfaceFile> latestPosts = new ArrayList<BoardRepositoryInterfaceFile>();
+		latestPosts.add(latestPostsTest.get(0));
+		int k=0;
+		for(int i=1; i<latestPostsTest.size(); i++) {
+			if (latestPostsTest.get(i).getBoardseq() != latestPosts.get(k).getBoardseq()) {
+				latestPosts.add(latestPostsTest.get(i));
+				k++;
+			}
+			if(latestPosts.size()==5) {break;}
+		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("like", likesPosts);
 		map.put("latest", latestPosts);
@@ -97,10 +104,26 @@ public class BoardController {
 	}
 	
 	//상세 조회
-//	@GetMapping(value = "/board/reply")
-//	public List<BoardRepositoryInterfaceCommon> getOneReplyBoard(long boardSeq){
-//		return boardRepository.findByReplyOrderByRegdateDesc();
-//	}
+	@GetMapping(value = "/board/{boardSeq}")
+	public ResponseEntity<Map<String, Object>> getOneReplyBoard(@PathVariable long boardSeq){
+		Map<String, Object> map = new HashMap<String, Object>();
+		BoardRepositoryInterfaceCommon boardVo = boardRepository.findOneByBoardseq(boardSeq);
+		if(boardVo == null) {
+			map.put("boardVo", "");
+		}else {
+			map.put("boardVo", boardVo);
+			if(boardVo.getBtype().equals("R")) {
+				//댓글 게시판의 게시글
+				List<ReplyRepositoryInterface> replys = replyRepository.findByBoardBoardseqReply(boardSeq);
+				map.put("replyVos", replys);
+			}else if(boardVo.getBtype().equals("F")){
+				//파일 게시판의 게시글
+				List<FileStorageVo> fileVos = fileStorageRepository.findByBoardBoardseqAndEnabled(boardSeq,"Y");
+				map.put("fileVos", fileVos);
+			}
+		}
+		return ResponseEntity.ok(map);
+	}
 	
 	//댓글게시판 글 작성
 	@PostMapping(value = "/board/reply")

@@ -29,13 +29,17 @@ class BoardService{
         return axios.get(USER_API_BASE_URL+"/board/reply");
     }
 
-    //댓글 게시판 상세 조회
+    //게시판 상세 조회
     //게시글의 글 번호를 보내주셔야 합니다
-    /*
-    getReplyBoardOne(boardSeq){
-        return axios.get(USER_API_BASE_URL+"/board/reply",boardSeq);
+    //게시글은 boardVo에 담아보내고, (공통)
+    //댓글은 replyVos에 담았고, (댓글 게시판)
+    //파일은 fileVos에 담아서 보냈습니다 (파일 게시판)
+
+    //댓글의 경우 groupnum은 하나의 댓글(+답글이 포함된) 묶음입니다
+    //depthnum은 댓글의 깊이를 뜻합니다(depth => 0(본 댓글) ,1,2,.. (답글이 달리는 순서))
+    getBoardOne(boardSeq){
+        return axios.get(USER_API_BASE_URL+"/board/"+boardSeq);
     }
-    */
 
     //파일 게시판 글 작성
     //게시글의 제목(title), 내용(content), 작성자(id)를 json으로 보내주세요
@@ -49,19 +53,11 @@ class BoardService{
         return axios.get(USER_API_BASE_URL+"/board/file");
     }
 
-    //파일 게시판 상세 조회
-    //게시글의 글 번호를 보내주셔야 합니다
-    /*
-    getFileBoardOne(boardSeq){
-        return axios.get(USER_API_BASE_URL+"/board/reply",boardSeq);
-    }
-    */
-
     //파일 게시판 글 작성
     //게시글의 제목(title), 내용(content), 작성자(id), 파일들(files)을 form-data로 보내주세요
     //파일이 없을경우 form-data에 담지 말아주세요
     //파일의 경우 최대 16MB입니다
-    //form header에 multipart-form/data 담아서 보내주세요
+    //form header에 multipart/form-data 담아서 보내주세요
     insertFileBoard(formData){
         return axios.post(USER_API_BASE_URL+"/board/file",formData);
     }
