@@ -14,10 +14,9 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 	List<BoardVo> findTop5ByBtypeOrderByRegdateDesc(String btype);
 	
 	// 최신 순서대로 최대 5개의 글을 가져옴 - 파일	
-	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , f.file AS file, f.board.boardseq AS fileBoardseq "
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , f.file AS file "
 			+ "FROM BoardVo b " + "LEFT JOIN FileStorageVo f ON f.board.boardseq = b.boardseq "
 			+ "WHERE b.btype = 'F' AND b.delflag = 'N' " 
-			+ "GROUP BY b.boardseq, f.file, f.board.boardseq " 
 			+ "ORDER BY b.regdate DESC")
 	List<BoardRepositoryInterfaceFile> findTop5ByFileOrderByRegdateDesc();
 	
@@ -26,6 +25,7 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 			+ "CONCAT(b.content, ' (', COALESCE((SELECT COUNT(r.replyseq) FROM ReplyVo r WHERE r.board.boardseq = b.boardseq), 0), ')') AS content, "
 			+ "b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , "
 			+ "COALESCE((SELECT COUNT(bl.boardlikeseq) FROM BoardLikesVo bl WHERE bl.board.boardseq = b.boardseq), 0) AS countLikes, "
+			+ "COALESCE((SELECT COUNT(bd.boarddislikeseq) FROM BoardDislikesVo bd WHERE bd.board.boardseq = b.boardseq), 0) AS countDislikes, "
 			+ "COALESCE((SELECT COUNT(sc.seecountseq) FROM SeeCountVo sc WHERE sc.board.boardseq = b.boardseq), 0) AS countViews "
 	        + "FROM BoardVo b "
 	        + "WHERE b.btype = 'R' AND b.delflag = 'N' " 
@@ -38,8 +38,18 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 			+ "CONCAT(b.content, ' (', COALESCE((SELECT COUNT(f.fileseq) FROM FileStorageVo f WHERE f.board.boardseq = b.boardseq), 0), ')') AS content, "
 			+ "b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , "
 			+ "COALESCE((SELECT COUNT(bl.boardlikeseq) FROM BoardLikesVo bl WHERE bl.board.boardseq = b.boardseq), 0) AS countLikes, "
+			+ "COALESCE((SELECT COUNT(bd.boarddislikeseq) FROM BoardDislikesVo bd WHERE bd.board.boardseq = b.boardseq), 0) AS countDislikes, "
 			+ "COALESCE((SELECT COUNT(sc.seecountseq) FROM SeeCountVo sc WHERE sc.board.boardseq = b.boardseq), 0) AS countViews "
 			+ "FROM BoardVo b " + "WHERE b.btype = 'F' AND b.delflag = 'N' " + "GROUP BY b.boardseq "
 			+ "ORDER BY b.regdate DESC")
 	List<BoardRepositoryInterfaceCommon> findByFileOrderByRegdateDesc();
+	
+	//게시판 상세조회 공통
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, "
+			+ "b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , "
+			+ "COALESCE((SELECT COUNT(bl.boardlikeseq) FROM BoardLikesVo bl WHERE bl.board.boardseq = b.boardseq), 0) AS countLikes, "
+			+ "COALESCE((SELECT COUNT(bd.boarddislikeseq) FROM BoardDislikesVo bd WHERE bd.board.boardseq = b.boardseq), 0) AS countDislikes, "
+			+ "COALESCE((SELECT COUNT(sc.seecountseq) FROM SeeCountVo sc WHERE sc.board.boardseq = b.boardseq), 0) AS countViews "
+			+ "FROM BoardVo b " + "WHERE b.boardseq = ?1 AND b.delflag = 'N' ")
+	BoardRepositoryInterfaceCommon findOneByBoardseq(long boardseq);
 }

@@ -26,8 +26,8 @@ public class ReplyLikesVo {
 	private long replylikeseq;
 	
 	@ManyToOne
-	@JoinColumn(name = "boardseq")
-	private BoardVo board;
+	@JoinColumn(name = "replyseq")
+	private ReplyVo reply;
 	
 	@ManyToOne
 	@JoinColumn(name = "id")

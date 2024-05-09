@@ -12,5 +12,6 @@ public interface BoardRepositoryInterfaceCommon {
 	String getDelflag();
 	Date getRegdate();
 	int getCountLikes();
+	int getCountDislikes();
 	int getCountViews();
 }

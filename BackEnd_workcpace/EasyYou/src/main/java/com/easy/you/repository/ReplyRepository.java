@@ -1,9 +1,20 @@
 package com.easy.you.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.easy.you.model.BoardVo;
+import com.easy.you.model.ReplyRepositoryInterface;
 
 public interface ReplyRepository extends JpaRepository<BoardVo, Long>{
-
+	
+	@Query("SELECT r.replyseq AS replyseq, r.groupnum AS groupnum, r.depthnum AS depthnum, "
+			+ "r.content AS content, r.delflag AS delflag, r.regdate AS regdate ,r.user.id AS id , "
+			+ "COALESCE((SELECT COUNT(rl.replylikeseq) FROM ReplyLikesVo rl WHERE rl.reply.replyseq = r.replyseq), 0) AS countLikes, "
+			+ "COALESCE((SELECT COUNT(rd.replydislikeseq) FROM ReplyDislikesVo rd WHERE rd.reply.replyseq = r.replyseq), 0) AS countDislikes "
+			+ "FROM ReplyVo r " + "WHERE r.board.boardseq = ?1 AND r.delflag = 'N' "
+			+ "ORDER BY groupnum, depthnum ")
+	List<ReplyRepositoryInterface> findByBoardBoardseqReply(long boardSeq);
 }
