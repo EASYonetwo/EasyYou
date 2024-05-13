@@ -68,6 +68,7 @@ const CompBoardF = () => {
         }
       })
     })
+
   }, [_currentPage])
 
 
@@ -75,7 +76,7 @@ const CompBoardF = () => {
     <div className='BoardF'>
       <div className='BoardF-t'>
         <h3>파일게시판</h3>
-        <button onClick={() => { navigate('/') }}>글작성</button>
+        <button onClick={() => { navigate('/BoardFI') }}>글작성</button>
       </div>
       <div className='BoardF-b'>
         <table className="BoardF-table">

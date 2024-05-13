@@ -11,8 +11,7 @@
 .Main-h .board-d {
   width: 45%;
   height: 100%;
-  border: 1px solid rgba(255, 0, 0, 0.7);
-  background-color: rgba(255, 192, 203, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 3%;
 }
 .Main-h .board-d > h2 {
@@ -34,8 +33,7 @@
 .Main-h .board-f {
   width: 45%;
   height: 100%;
-  border: 1px solid rgba(255, 0, 0, 0.7);
-  background-color: rgba(255, 192, 203, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 3%;
 }
 .Main-h .board-f > h2 {
