@@ -58,10 +58,10 @@
 }
 .BoardD .BoardD-b {
   width: 80%;
-  height: 64vh;
+  height: 60vh;
   margin: 0 auto;
-  box-sizing: border-box;
   padding: 0 100px;
+  box-sizing: border-box;
 }
 .BoardD .BoardD-b .BoardD-table {
   width: 100%;
@@ -74,8 +74,30 @@
 .BoardD .BoardD-b .BoardD-table > thead > tr {
   border-bottom: 2px solid #ccc;
 }
+.BoardD .BoardD-b .BoardD-table > thead > tr > th:nth-child(1) {
+  width: 5%;
+}
+.BoardD .BoardD-b .BoardD-table > thead > tr > th:nth-child(2) {
+  width: 45%;
+}
+.BoardD .BoardD-b .BoardD-table > thead > tr > th:nth-child(3) {
+  width: 15%;
+}
+.BoardD .BoardD-b .BoardD-table > thead > tr > th:nth-child(4) {
+  width: 15%;
+}
+.BoardD .BoardD-b .BoardD-table > thead > tr > th:nth-child(5) {
+  width: 10%;
+}
+.BoardD .BoardD-b .BoardD-table > thead > tr > th:nth-child(6) {
+  width: 10%;
+}
 .BoardD .BoardD-b .BoardD-table > tbody > tr {
+  cursor: pointer;
   border-top: 1px solid #ccc;
+}
+.BoardD .BoardD-b .BoardD-table > tbody > tr:hover .Board-title {
+  text-decoration: underline;
 }
 .BoardD .page-nav {
   display: flex;
@@ -83,7 +105,7 @@
 }
 .BoardD .page-nav > button {
   width: 30px;
-  margin: 0 30px;
+  margin: 20px 30px;
   border: none;
 }
 .BoardD .page-nav > button.active {
@@ -117,7 +139,7 @@
 }
 .BoardF .BoardF-b {
   width: 80%;
-  height: 64vh;
+  height: 60vh;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 100px;
@@ -133,6 +155,24 @@
 }
 .BoardF .BoardF-b .BoardF-table > thead > tr {
   border-bottom: 2px solid #ccc;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(1) {
+  width: 10%;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(2) {
+  width: 40%;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(3) {
+  width: 15%;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(4) {
+  width: 15%;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(5) {
+  width: 10%;
+}
+.BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(6) {
+  width: 10%;
 }
 .BoardF .BoardF-b .BoardF-table > tbody > tr {
   border-top: 1px solid #ccc;
@@ -150,7 +190,7 @@
   color: red;
 }
 
-.BoardDI-t {
+.BoardDI .BoardDI-t {
   position: relative;
   width: 80%;
   height: 10vh;
@@ -158,15 +198,14 @@
   text-align: center;
   line-height: 10vh;
 }
-.BoardDI-t > button {
+.BoardDI .BoardDI-t > button {
   position: absolute;
   top: 50%;
   left: 100px;
   width: 7%;
   transform: translate(0, -50%);
 }
-
-.BoardDI-b {
+.BoardDI .BoardDI-b {
   position: relative;
   width: 80%;
   height: 64vh;
@@ -174,65 +213,437 @@
   box-sizing: border-box;
   padding: 0 100px;
 }
-.BoardDI-b > div {
+.BoardDI .BoardDI-b > div {
   display: flex;
   align-items: center;
 }
-.BoardDI-b > div > span:nth-child(1) {
+.BoardDI .BoardDI-b > div > span:nth-child(1) {
   display: inline-block;
   width: 10%;
 }
-.BoardDI-b .person {
+.BoardDI .BoardDI-b .person {
   height: 10%;
   border-top: 1px solid #bbb;
   border-bottom: 1px solid #bbb;
 }
-.BoardDI-b .title {
+.BoardDI .BoardDI-b .title {
   height: 10%;
 }
-.BoardDI-b .title > input {
+.BoardDI .BoardDI-b .title > input {
   width: 75%;
   height: 50%;
   padding: 0 5px;
   box-sizing: border-box;
 }
-.BoardDI-b .content {
+.BoardDI .BoardDI-b .content {
   height: 80%;
   border-top: 1px solid #bbb;
   border-bottom: 1px solid #bbb;
 }
-.BoardDI-b .content > textarea {
+.BoardDI .BoardDI-b .content > textarea {
   width: 85%;
   height: 80%;
   resize: none;
   padding: 5px;
   box-sizing: border-box;
 }
-.BoardDI-b .Bbtn-u {
-  position: absolute;
-  bottom: 3%;
-  left: 47%;
-  width: 5%;
-  transform: translate(-50%, 0);
-}
-.BoardDI-b .Bbtn-c {
-  position: absolute;
-  bottom: 3%;
-  left: 53%;
-  width: 5%;
-  transform: translate(-50%, 0);
-}
-
-.btn {
+.BoardDI .btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 10vh;
 }
-.btn > button {
+.BoardDI .btn > button {
+  position: absolute;
+  bottom: 50%;
   width: 5%;
   height: 50%;
   margin: 0 10px;
+  transform: translate(-50%, 50%);
+}
+.BoardDI .btn .Bbtn-u {
+  left: 47%;
+}
+.BoardDI .btn .Bbtn-c {
+  left: 53%;
+}
+
+.BoardFI .BoardFI-t {
+  position: relative;
+  width: 80%;
+  height: 10vh;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 10vh;
+}
+.BoardFI .BoardFI-t > button {
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  width: 7%;
+  transform: translate(0, -50%);
+}
+.BoardFI .BoardFI-b {
+  position: relative;
+  width: 80%;
+  height: 64vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 100px;
+}
+.BoardFI .BoardFI-b > div {
+  display: flex;
+  align-items: center;
+}
+.BoardFI .BoardFI-b > div > span:nth-child(1) {
+  display: inline-block;
+  width: 10%;
+}
+.BoardFI .BoardFI-b .person {
+  height: 10%;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+.BoardFI .BoardFI-b .title {
+  height: 10%;
+}
+.BoardFI .BoardFI-b .title > input {
+  width: 75%;
+  height: 50%;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+.BoardFI .BoardFI-b .content {
+  height: 70%;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+.BoardFI .BoardFI-b .content > textarea {
+  width: 85%;
+  height: 80%;
+  resize: none;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.BoardFI .BoardFI-b .file {
+  height: 10%;
+}
+.BoardFI .btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+}
+.BoardFI .btn > button {
+  position: absolute;
+  bottom: 50%;
+  width: 5%;
+  height: 50%;
+  margin: 0 10px;
+  transform: translate(-50%, 50%);
+}
+.BoardFI .btn .Bbtn-u {
+  left: 47%;
+}
+.BoardFI .btn .Bbtn-c {
+  left: 53%;
+}
+
+.BoardDD {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 100px;
+}
+.BoardDD .BoardDD-btns {
+  position: relative;
+  height: 8vh;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+}
+.BoardDD .BoardDD-btns .back-btn {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 8%;
+}
+.BoardDD .BoardDD-btns .BoardDD-btns-user {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  width: 20%;
+}
+.BoardDD .BoardDD-btns .BoardDD-btns-user .rewrite-btn {
+  width: 40%;
+  margin-right: 10px;
+}
+.BoardDD .BoardDD-btns .BoardDD-btns-user .delete-btn {
+  width: 40%;
+}
+.BoardDD .BoardDD-dataText {
+  height: 10vh;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+}
+.BoardDD .BoardDD-dataText > h4 {
+  text-align: start;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+.BoardDD .BoardDD-dataText > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+.BoardDD .BoardDD-content {
+  box-sizing: border-box;
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  height: 24vh;
+}
+.BoardDD .BoardDD-content .content {
+  width: 100%;
+  height: 100%;
+  text-align: start;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.BoardDD .BoardDD-likeHate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6vh;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.BoardDD .BoardDD-likeHate > span {
+  margin: 0 10px;
+  width: 10%;
+}
+.BoardDD .BoardDD-prevNext {
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.BoardDD .BoardDD-prevNext > div {
+  height: 50%;
+  text-align: start;
+  line-height: calc(5vh - 10px);
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: 1px solid black;
+}
+.BoardDD .BoardDD-prevNext > div.prev {
+  border-bottom: none;
+}
+.BoardDD .BoardDD-comment {
+  height: 26vh;
+}
+.BoardDD .BoardDD-comment .comment-title {
+  height: 15%;
+  text-align: start;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: 1px solid black;
+}
+.BoardDD .BoardDD-comment .comment-main {
+  position: relative;
+  width: 100%;
+  height: 30%;
+}
+.BoardDD .BoardDD-comment .comment-main > textarea {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-sizing: border-box;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 10px;
+  padding-right: 60px;
+  resize: none;
+}
+.BoardDD .BoardDD-comment .comment-main > button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 50px;
+  height: 70%;
+}
+.BoardDD .BoardDD-comment .comment-comment {
+  height: 45%;
+  text-align: start;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: 1px solid black;
+  font-size: 0.5em;
+  padding-top: 5px;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-id {
+  height: 20%;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-content {
+  height: 20%;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-date {
+  height: 20%;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-btns {
+  display: flex;
+  height: 40%;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-btns > button {
+  width: 10%;
+  border-radius: 0;
+  background-color: white;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-btns .btn-like {
+  margin-left: auto;
+}
+.BoardDD .BoardDD-comment .comment-comment .comment-btns .btn-hate {
+  margin-left: 30px;
+}
+
+.BoardFD {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 100px;
+}
+.BoardFD .BoardFD-btns {
+  position: relative;
+  height: 8vh;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+}
+.BoardFD .BoardFD-btns .back-btn {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 8%;
+}
+.BoardFD .BoardFD-btns .BoardFD-btns-user {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  width: 20%;
+}
+.BoardFD .BoardFD-btns .BoardFD-btns-user .rewrite-btn {
+  width: 40%;
+  margin-right: 10px;
+}
+.BoardFD .BoardFD-btns .BoardFD-btns-user .delete-btn {
+  width: 40%;
+}
+.BoardFD .BoardFD-dataText {
+  height: 10vh;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+}
+.BoardFD .BoardFD-dataText > h4 {
+  text-align: start;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+.BoardFD .BoardFD-dataText > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+.BoardFD .BoardFD-content {
+  box-sizing: border-box;
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  height: 24vh;
+}
+.BoardFD .BoardFD-content .content {
+  width: 100%;
+  height: 100%;
+  text-align: start;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.BoardFD .BoardFD-likeHate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6vh;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.BoardFD .BoardFD-likeHate > span {
+  margin: 0 10px;
+  width: 10%;
+}
+.BoardFD .BoardFD-prevNext {
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.BoardFD .BoardFD-prevNext > div {
+  height: 50%;
+  text-align: start;
+  line-height: calc(5vh - 10px);
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: 1px solid black;
+}
+.BoardFD .BoardFD-prevNext > div.prev {
+  border-bottom: none;
+}
+.BoardFD .BoardFD-comment {
+  height: 26vh;
+}
+.BoardFD .BoardFD-comment .comment-title {
+  height: 15%;
+  text-align: start;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: 1px solid black;
+}
+.BoardFD .BoardFD-comment .comment-main {
+  display: flex;
+  height: 70%;
+  border: 1px solid black;
+  border-top: none;
+  background-color: white;
+}
+.BoardFD .BoardFD-comment .comment-main > li {
+  width: 20%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.BoardFD .BoardFD-comment .comment-main > li .main-img {
+  width: 50%;
+  height: 50%;
+  margin: 0 auto;
+}
+.BoardFD .BoardFD-comment .comment-main > li > div {
+  height: 25%;
+  box-sizing: border-box;
+  padding: 3px;
+  font-size: 0.8em;
+}
+.BoardFD .BoardFD-comment .comment-main > li > div > img {
+  width: 100%;
+  height: 100%;
+}
+.BoardFD .BoardFD-comment .comment-main > li > button {
+  width: 80%;
+  border-radius: 5px;
 }
 
 .Dpost {

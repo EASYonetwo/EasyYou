@@ -5,86 +5,107 @@ import CompBoardDT from './CompBoardDT';
 
 
 const CompBoardD = () => {
-  const [_numScreen, _setNumScreen] = useState(3)
+  const [_numScreen, _setNumScreen] = useState(5)
   const [_currentPage, _setCurrentPage] = useState(1)
   const [_totalPage, _setTotalPage] = useState()
+  const [_totalData, _setTotalData] = useState()
+  const [_btnArr, _setBtnArr] = useState()
   const [_searchData, _setSearchData] = useState()
   const [_search, _setSearch] = useState()
-  const [_arr, _setArr] = useState()
   const navigate = useNavigate()
 
   useEffect(() => {
-    BoardService.getReplyBoardAll().then(res => {
-      let firstBoard = ((_currentPage - 1) * _numScreen)
-      let lastBoard = _currentPage * _numScreen
-      let totalPage = Math.ceil((res.data.length) / _numScreen)
-      let arr = Array.from({ length: totalPage })
+    BoardService.getReplyBoardAll().then(res => { 
+      let All = res.data.map((v, index) => <CompBoardDT data={v} key={index} num={index + 1} />)
+      let Data = (_search) ? All.filter(v => v.props.data.title.toLowerCase().includes(_search)) : All
+      let totalPage = Math.ceil(Data.length / _numScreen)
+
+      let num = _currentPage
+
+      _setBtnArr(Array.from({ "length": totalPage }, (v, i) => i + 1))
+      _setTotalData(Data)
       _setTotalPage(totalPage)
-      _setArr(arr)
-      document.querySelector('.page-nav > button').classList.remove('active')
+      _setSearchData(Data.slice((_currentPage - 1) * _numScreen, _numScreen * _currentPage))
+      if (num >= totalPage) { num = totalPage }
+      else { num = _currentPage }
+      _setSearchData(Data.slice((num - 1) * _numScreen, _numScreen * num))
+
       document.querySelectorAll('.page-nav > button').forEach(v => {
-        if (_currentPage === parseInt(v.value)) {
+        v.classList.remove('active')
+        if (num === parseInt(v.value)) {
           v.classList.add('active')
         }
       })
-      if(_search!==undefined){
-        firstBoard = ((_currentPage - 1) * _numScreen)
-        lastBoard = _currentPage * _numScreen
-        let searchData = res.data.filter(v => v.title.toLowerCase().includes(_search))
-        let totalSearchPage = Math.ceil((searchData.length) / _numScreen)
-        let searchArr = Array.from({ length: totalSearchPage })
-        _setSearchData(searchData.slice(firstBoard, lastBoard))
-        _setArr(searchArr)
+
+
+      if (_currentPage >= _totalPage) {
+        if (((res.data.length) % _numScreen) === 0) {
+          document.querySelector('.BoardD-table').style.height = "100%"
+        }
+        else {
+          document.querySelector('.BoardD-table').style.height = (100 / _numScreen) * ((res.data.length) % _numScreen) + '%'
+        }
       }
-      else{
-        _setSearchData(res.data.slice(firstBoard, lastBoard))
+      else {
+        document.querySelector('.BoardD-table').style.height = "100%"
       }
-      
+
     })
 
-  }, [_currentPage, _numScreen, _search])
+  }, [_search, _numScreen, _currentPage, _totalPage])
 
   function fnClickBtn(e) {
     _setCurrentPage(parseInt(e.target.value))
-    document.querySelectorAll('.page-nav > button').forEach(v => {
-      v.classList.remove('active')
-    })
-    e.target.classList.add('active')
   }
+
   function fnClickPrev() {
-    document.querySelectorAll('.page-nav > button').forEach(v => {
-      v.classList.remove('active')
-    })
-    if (_currentPage <= 1) {
-      alert('첫 페이지입니다.')
-      document.querySelectorAll('.page-nav > button').forEach(v => {
-        if (_currentPage === parseInt(v.value)) {
-          v.classList.add('active')
-        }
-      })
-    }
-    else {
+    if (_currentPage > 1) {
       _setCurrentPage(v => v - 1)
     }
+    else {
+      alert('첫페이지')
+    }
+
   }
   function fnClickNext() {
-    document.querySelectorAll('.page-nav > button').forEach(v => {
-      v.classList.remove('active')
-    })
-    if (_currentPage < _totalPage) {
-      _setCurrentPage(v => v + 1)
+    if (_currentPage === _totalPage) {
+      alert('마지막페이지')
     }
     else {
-      alert('마지막 페이지입니다.')
-      document.querySelectorAll('.page-nav > button').forEach(v => {
-        if (_currentPage === parseInt(v.value)) {
-          v.classList.add('active')
-        }
-      })
+      _setCurrentPage(v => v + 1)
     }
+
   }
   function fnSearch(e) {
+    _setCurrentPage(_currentPage)
     _setSearch((e.target.value.toLowerCase()))
+
+
+    document.querySelectorAll('.page-nav > button').forEach(v => {
+      v.classList.remove('active')
+      if (_currentPage === parseInt(v.value)) {
+        v.classList.add('active')
+      }
+    })
+    if (_currentPage >= _totalPage) {
+      if (((_totalData.length) % _numScreen) === 0) {
+        document.querySelector('.BoardD-table').style.height = "100%"
+      }
+      else {
+        document.querySelector('.BoardD-table').style.height = (100 / _numScreen) * ((_totalData.length) % _numScreen) + '%'
+      }
+    }
+    else {
+      document.querySelector('.BoardD-table').style.height = "100%"
+    }
+
+  }
+
+  function fnSelect(e) {
+    if (e.target.value === '10') {
+      _setCurrentPage(1)
+    }
+    _setNumScreen(e.target.value)
   }
 
 
@@ -95,12 +116,12 @@ const CompBoardD = () => {
         <button onClick={() => { navigate('/BoardDI') }}>글작성</button>
       </div>
       <div className='BoardD-m'>
-        <select onClick={(e) => { _setNumScreen(e.target.value) }}>
-          <option value="3">3</option>
-          <option value="6">6</option>
+        <select onClick={fnSelect}>
+          <option value="5">5</option>
+          <option value="10">10</option>
         </select>
         <span>검색:</span>
-        <input type="text" value={_search||''} onChange={fnSearch} />
+        <input type="text" value={_search || ''} onChange={fnSearch} />
 
       </div>
       <div className='BoardD-b'>
@@ -117,8 +138,7 @@ const CompBoardD = () => {
           </thead>
           <tbody>
             {
-              (_searchData)&&
-              _searchData.map((v, index) => <CompBoardDT data={v} key={index} />)
+              _searchData
             }
           </tbody>
         </table>
@@ -126,7 +146,7 @@ const CompBoardD = () => {
       <div className='page-nav'>
         <button onClick={fnClickPrev}>이전</button>
         {
-          (_arr) && _arr.map((v, index) => <button onClick={fnClickBtn} key={index} value={index + 1}>{index + 1}</button>)
+          (_btnArr) && _btnArr.map((v, index) => <button onClick={fnClickBtn} key={index} value={v}>{v}</button>)
         }
         <button onClick={fnClickNext}>다음</button>
       </div>

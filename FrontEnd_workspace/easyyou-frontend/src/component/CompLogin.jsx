@@ -5,11 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import UserService from '../service/UserSerive';
 import { AppContext } from '../App';
 const CompLogin = () => {
-  const {_isLogin,_setIsLogin,_loginId, _setLoginId} = useContext(AppContext)
+  const {_setIsLogin, _loginId, _setLoginId } = useContext(AppContext)
   const [_type, _setType] = useState('password')
   const [_icon, _setIcon] = useState(faEyeSlash)
   const [_loginPw, _setLoginPw] = useState()
   const navigate = useNavigate()
+  const log = {
+    id: _loginId,
+    password: _loginPw
+  }
   function fnClickHander() {
     _setType(v => (v === 'password') ? 'text' : 'password')
     _setIcon(v => (v === faEyeSlash) ? faEye : faEyeSlash)
@@ -17,25 +21,31 @@ const CompLogin = () => {
 
   function fnLogin(e) {
     e.preventDefault()
-    const log = {
-      id: _loginId,
-      password: _loginPw
-    }
+
     UserService.login(log).then(res => {
-      if(res.data.id===_loginId && res.data.password===_loginPw){
-        alert('로그인 확인되었습니다')
-        _setIsLogin(true)
-        window.localStorage.setItem('UserStorage',JSON.stringify(log))
-        navigate('/')
+      if (log.id !== undefined && log.password !== undefined) {
+        if (res.data.id === _loginId && res.data.password === _loginPw) {
+          alert('로그인 확인되었습니다')
+          _setIsLogin(true)
+          window.localStorage.setItem('UserStorage', JSON.stringify(log))
+          navigate('/')
+        }
+        else {
+          alert('아이디 혹은 비밀번호가 틀렸습니다.')
+          _setLoginId()
+          _setLoginPw()
+        }
       }
-      else if(res.data.id!==_loginId){
-        alert('아이디가 존재하지 않습니다.')
-        _setLoginId('')
-        _setLoginPw('')
-      }
-      else if(res.data.id===_loginId && res.data.password!==_loginPw){
-        alert('패스워드가 잘못 입력되었습니다.')
-        _setLoginPw('')
+      else{
+        if(_loginId!==undefined){
+          alert('비밀번호를 입력해주세요')
+        }
+        else if(_loginPw!==undefined){
+          alert('아이디를 입력해 주세요')
+        }
+        else{
+          alert('아이디와 비밀번호를 입력해주세요')
+        }
       }
     })
   }

@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+body {
+  background-color: rgba(135, 206, 235, 0.2);
+}
+
 li {
   list-style: none;
 }
@@ -22,6 +26,11 @@ input::-moz-placeholder {
 
 input::placeholder {
   color: rgba(0, 0, 0, 0.2);
+}
+
+textarea {
+  border: 1px solid black;
+  outline: none;
 }
 
 button {
@@ -44,4 +53,15 @@ textarea {
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Giants-Inline.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
+}
+@keyframes upText {
+  0% {
+    transform: scale(50%);
+  }
+  50% {
+    transform: scale(0%);
+  }
+  100% {
+    transform: scale(100%);
+  }
 }/*# sourceMappingURL=style.css.map */

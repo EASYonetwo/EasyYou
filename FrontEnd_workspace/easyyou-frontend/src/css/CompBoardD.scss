@@ -57,10 +57,10 @@
   }
   .BoardD-b {
     width: 80%;
-    height: 64vh;
+    height: 60vh;
     margin: 0 auto;
-    box-sizing: border-box;
     padding: 0 100px;
+    box-sizing: border-box;
     .BoardD-table {
       width: 100%;
       height: 100%;
@@ -71,11 +71,37 @@
       > thead {
         > tr {
           border-bottom: 2px solid #ccc;
+          > th {
+            &:nth-child(1) {
+              width: 5%;
+            }
+            &:nth-child(2) {
+              width: 45%;
+            }
+            &:nth-child(3) {
+              width: 15%;
+            }
+            &:nth-child(4) {
+              width: 15%;
+            }
+            &:nth-child(5) {
+              width: 10%;
+            }
+            &:nth-child(6) {
+              width: 10%;
+            }
+          }
         }
       }
       > tbody {
         > tr {
+          cursor: pointer;
           border-top: 1px solid #ccc;
+          &:hover{
+            .Board-title{
+              text-decoration:underline;
+            }
+          }
         }
       }
     }
@@ -85,7 +111,7 @@
     justify-content: center;
     > button {
       width: 30px;
-      margin: 0 30px;
+      margin: 20px 30px;
       border: none;
       &.active {
         color: red;
@@ -119,7 +145,7 @@
   }
   .BoardF-b {
     width: 80%;
-    height: 64vh;
+    height: 60vh;
     margin: 0 auto;
     box-sizing: border-box;
     padding: 0 100px;
@@ -134,6 +160,26 @@
       > thead {
         > tr {
           border-bottom: 2px solid #ccc;
+          > th {
+            &:nth-child(1) {
+              width: 10%;
+            }
+            &:nth-child(2) {
+              width: 40%;
+            }
+            &:nth-child(3) {
+              width: 15%;
+            }
+            &:nth-child(4) {
+              width: 15%;
+            }
+            &:nth-child(5) {
+              width: 10%;
+            }
+            &:nth-child(6) {
+              width: 10%;
+            }
+          }
         }
       }
       > tbody {
@@ -156,88 +202,462 @@
     }
   }
 }
-
-.BoardDI-t {
-  position: relative;
-  width: 80%;
-  height: 10vh;
-  margin: 0 auto;
-  text-align: center;
-  line-height: 10vh;
-  > button {
-    position: absolute;
-    top: 50%;
-    left: 100px;
-    width: 7%;
-    transform: translate(0, -50%);
+.BoardDI {
+  .BoardDI-t {
+    position: relative;
+    width: 80%;
+    height: 10vh;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 10vh;
+    > button {
+      position: absolute;
+      top: 50%;
+      left: 100px;
+      width: 7%;
+      transform: translate(0, -50%);
+    }
   }
-}
-.BoardDI-b {
-  position: relative;
-  width: 80%;
-  height: 64vh;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 0 100px;
-  > div {
+  .BoardDI-b {
+    position: relative;
+    width: 80%;
+    height: 64vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 100px;
+    > div {
+      display: flex;
+      align-items: center;
+      > span:nth-child(1) {
+        display: inline-block;
+        width: 10%;
+      }
+    }
+    .person {
+      height: 10%;
+      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+    }
+    .title {
+      height: 10%;
+      > input {
+        width: 75%;
+        height: 50%;
+        padding: 0 5px;
+        box-sizing: border-box;
+      }
+    }
+    .content {
+      height: 80%;
+      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+      > textarea {
+        width: 85%;
+        height: 80%;
+        resize: none;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .btn {
+    position: relative;
     display: flex;
     align-items: center;
-    > span:nth-child(1) {
-      display: inline-block;
+    justify-content: center;
+    height: 10vh;
+    > button {
+      position: absolute;
+      bottom: 50%;
+      width: 5%;
+      height: 50%;
+      margin: 0 10px;
+      transform: translate(-50%, 50%);
+    }
+    .Bbtn-u {
+      left: 47%;
+    }
+    .Bbtn-c {
+      left: 53%;
+    }
+  }
+}
+.BoardFI {
+  .BoardFI-t {
+    position: relative;
+    width: 80%;
+    height: 10vh;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 10vh;
+    > button {
+      position: absolute;
+      top: 50%;
+      left: 100px;
+      width: 7%;
+      transform: translate(0, -50%);
+    }
+  }
+  .BoardFI-b {
+    position: relative;
+    width: 80%;
+    height: 64vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 100px;
+    > div {
+      display: flex;
+      align-items: center;
+      > span:nth-child(1) {
+        display: inline-block;
+        width: 10%;
+      }
+    }
+    .person {
+      height: 10%;
+      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+    }
+    .title {
+      height: 10%;
+      > input {
+        width: 75%;
+        height: 50%;
+        padding: 0 5px;
+        box-sizing: border-box;
+      }
+    }
+    .content {
+      height: 70%;
+      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+      > textarea {
+        width: 85%;
+        height: 80%;
+        resize: none;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+    }
+    .file {
+      height: 10%;
+    }
+  }
+  .btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    > button {
+      position: absolute;
+      bottom: 50%;
+      width: 5%;
+      height: 50%;
+      margin: 0 10px;
+      transform: translate(-50%, 50%);
+    }
+    .Bbtn-u {
+      left: 47%;
+    }
+    .Bbtn-c {
+      left: 53%;
+    }
+  }
+}
+.BoardDD {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 100px;
+  .BoardDD-btns {
+    position: relative;
+    height: 8vh;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    .back-btn {
+      position: absolute;
+      top: 10%;
+      left: 0;
+      width: 8%;
+    }
+    .BoardDD-btns-user {
+      position: absolute;
+      bottom: 10%;
+      right: 0;
+      width: 20%;
+      .rewrite-btn {
+        width: 40%;
+        margin-right: 10px;
+      }
+      .delete-btn {
+        width: 40%;
+      }
+    }
+  }
+
+  .BoardDD-dataText {
+    height: 10vh;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    > h4 {
+      text-align: start;
+      box-sizing: border-box;
+      padding: 5px 10px;
+    }
+    > div {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+    }
+  }
+  .BoardDD-content {
+    box-sizing: border-box;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    height: 24vh;
+    .content {
+      width: 100%;
+      height: 100%;
+      text-align: start;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      padding: 10px;
+      background-color: rgba(white, 0.9);
+    }
+  }
+  .BoardDD-likeHate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6vh;
+    box-sizing: border-box;
+    padding: 10px 0;
+    > span {
+      margin: 0 10px;
       width: 10%;
     }
   }
-  .person {
-    height: 10%;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-  }
-  .title {
-    height: 10%;
-    > input {
-      width: 75%;
+  .BoardDD-prevNext {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    box-sizing: border-box;
+    padding: 10px 0;
+    > div {
       height: 50%;
-      padding: 0 5px;
+      text-align: start;
+      line-height: calc(5vh - 10px);
       box-sizing: border-box;
+      padding: 0 10px;
+      border: 1px solid black;
+      &.prev {
+        border-bottom: none;
+      }
     }
   }
-  .content {
-    height: 80%;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-    > textarea {
-      width: 85%;
-      height: 80%;
-      resize: none;
-      padding: 5px;
+  .BoardDD-comment {
+    height: 26vh;
+    .comment-title {
+      height: 15%;
+      text-align: start;
       box-sizing: border-box;
+      padding: 0 10px;
+      border: 1px solid black;
+    }
+    .comment-main {
+      position: relative;
+      width: 100%;
+      height: 30%;
+      > textarea {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        box-sizing: border-box;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        padding: 10px;
+        padding-right: 60px;
+        resize: none;
+      }
+      > button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        width: 50px;
+        height: 70%;
+      }
+    }
+    .comment-comment {
+      height: 45%;
+      text-align: start;
+      box-sizing: border-box;
+      padding: 0 10px;
+      border: 1px solid black;
+      font-size: 0.5em;
+      padding-top: 5px;
+      .comment-id {
+        height: 20%;
+      }
+      .comment-content {
+        height: 20%;
+      }
+      .comment-date {
+        height: 20%;
+      }
+      .comment-btns {
+        display: flex;
+        height: 40%;
+        padding: 5px 0;
+        box-sizing: border-box;
+        > button {
+          width: 10%;
+          border-radius: 0;
+          background-color: white;
+        }
+        .btn-like {
+          margin-left: auto;
+        }
+        .btn-hate {
+          margin-left: 30px;
+        }
+      }
+    }
+  }
+}
+.BoardFD {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 100px;
+  .BoardFD-btns {
+    position: relative;
+    height: 8vh;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    .back-btn {
+      position: absolute;
+      top: 10%;
+      left: 0;
+      width: 8%;
+    }
+    .BoardFD-btns-user {
+      position: absolute;
+      bottom: 10%;
+      right: 0;
+      width: 20%;
+      .rewrite-btn {
+        width: 40%;
+        margin-right: 10px;
+      }
+      .delete-btn {
+        width: 40%;
+      }
     }
   }
 
-  .Bbtn-u {
-    position: absolute;
-    bottom: 3%;
-    left: 47%;
-    width: 5%;
-    transform: translate(-50%, 0);
+  .BoardFD-dataText {
+    height: 10vh;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    > h4 {
+      text-align: start;
+      box-sizing: border-box;
+      padding: 5px 10px;
+    }
+    > div {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+    }
   }
-  .Bbtn-c {
-    position: absolute;
-    bottom: 3%;
-    left: 53%;
-    width: 5%;
-    transform: translate(-50%, 0);
+  .BoardFD-content {
+    box-sizing: border-box;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    height: 24vh;
+    .content {
+      width: 100%;
+      height: 100%;
+      text-align: start;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      padding: 10px;
+      background-color: rgba(white, 0.9);
+    }
   }
-}
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 10vh;
-  >button{
-    width: 5%;
-    height: 50%;
-    margin: 0 10px;
+  .BoardFD-likeHate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6vh;
+    box-sizing: border-box;
+    padding: 10px 0;
+    > span {
+      margin: 0 10px;
+      width: 10%;
+    }
+  }
+  .BoardFD-prevNext {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    box-sizing: border-box;
+    padding: 10px 0;
+    > div {
+      height: 50%;
+      text-align: start;
+      line-height: calc(5vh - 10px);
+      box-sizing: border-box;
+      padding: 0 10px;
+      border: 1px solid black;
+      &.prev {
+        border-bottom: none;
+      }
+    }
+  }
+  .BoardFD-comment {
+    height: 26vh;
+    .comment-title {
+      height: 15%;
+      text-align: start;
+      box-sizing: border-box;
+      padding: 0 10px;
+      border: 1px solid black;
+    }
+    .comment-main {
+      display: flex;
+      height: 70%;
+      border: 1px solid black;
+      border-top: none;
+      background-color: white;
+      >li{
+        width: 20%;
+        box-sizing: border-box;
+        padding: 10px;
+        .main-img{
+          width: 50%;
+          height: 50%;
+          margin:0 auto;
+        }
+        >div{
+          height: 25%;
+          box-sizing: border-box;
+          padding: 3px;
+          font-size: 0.8em;
+          >img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+        >button{
+          width: 80%;
+          border-radius: 5px;
+        }
+      }
+    }
   }
 }
 
