@@ -6,4 +6,6 @@ import com.easy.you.model.ReplyLikesVo;
 
 public interface ReplyLikesRepository extends JpaRepository<ReplyLikesVo, Long>{
 
+	ReplyLikesVo findByReplyReplyseqAndUserId(long replySeq, String id);
+
 }

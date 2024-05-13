@@ -24,5 +24,7 @@ public interface BoardLikesRepository extends JpaRepository<BoardLikesVo, Long>{
 			+ "GROUP BY b.boardseq, f.file, f.board.boardseq "
 			+ "ORDER BY COUNT(bl.board.boardseq) DESC, b.regdate DESC")
 	List<BoardRepositoryInterfaceFile> findTop3MostLikedByBtypeF();
+
+	BoardLikesVo findByBoardBoardseqAndUserId(long boardSeq, String id);
 }
 

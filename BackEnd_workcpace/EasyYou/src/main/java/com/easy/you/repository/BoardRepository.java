@@ -22,7 +22,7 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 	
 	// 게시판 전체 조회 - 댓글
 	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, "
-			+ "CONCAT(b.content, ' (', COALESCE((SELECT COUNT(r.replyseq) FROM ReplyVo r WHERE r.board.boardseq = b.boardseq), 0), ')') AS content, "
+			+ "b.content AS content, "
 			+ "b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , "
 			+ "COALESCE((SELECT COUNT(bl.boardlikeseq) FROM BoardLikesVo bl WHERE bl.board.boardseq = b.boardseq), 0) AS countLikes, "
 			+ "COALESCE((SELECT COUNT(bd.boarddislikeseq) FROM BoardDislikesVo bd WHERE bd.board.boardseq = b.boardseq), 0) AS countDislikes, "
@@ -34,8 +34,8 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 	List<BoardRepositoryInterfaceCommon> findByReplyOrderByRegdateDesc();
 	
 	// 게시판 전체 조회 - 파일
-	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, "
-			+ "CONCAT(b.content, ' (', COALESCE((SELECT COUNT(f.fileseq) FROM FileStorageVo f WHERE f.board.boardseq = b.boardseq), 0), ')') AS content, "
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, CONCAT(b.title, ' (', COALESCE((SELECT COUNT(f.fileseq) FROM FileStorageVo f WHERE f.board.boardseq = b.boardseq), 0), ')') AS title, "
+			+ "b.content AS content, "
 			+ "b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , "
 			+ "COALESCE((SELECT COUNT(bl.boardlikeseq) FROM BoardLikesVo bl WHERE bl.board.boardseq = b.boardseq), 0) AS countLikes, "
 			+ "COALESCE((SELECT COUNT(bd.boarddislikeseq) FROM BoardDislikesVo bd WHERE bd.board.boardseq = b.boardseq), 0) AS countDislikes, "
@@ -52,4 +52,6 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 			+ "COALESCE((SELECT COUNT(sc.seecountseq) FROM SeeCountVo sc WHERE sc.board.boardseq = b.boardseq), 0) AS countViews "
 			+ "FROM BoardVo b " + "WHERE b.boardseq = ?1 AND b.delflag = 'N' ")
 	BoardRepositoryInterfaceCommon findOneByBoardseq(long boardseq);
+
+	BoardVo findByBoardseq(long boardSeq);
 }

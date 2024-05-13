@@ -12,5 +12,7 @@ public interface ReplyRepositoryInterface{
 	String getDelflag();
 	String getId();
 	int getCountLikes();
+	String getReplyLikes();
 	int getCountDislikes();
+	String getReplyDislikes();
 }
