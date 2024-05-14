@@ -21,7 +21,6 @@ const CompBoardD = () => {
       let totalPage = Math.ceil(Data.length / _numScreen)
 
       let num = _currentPage
-
       _setBtnArr(Array.from({ "length": totalPage }, (v, i) => i + 1))
       _setTotalData(Data)
       _setTotalPage(totalPage)

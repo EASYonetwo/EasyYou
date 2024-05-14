@@ -16,7 +16,6 @@ const CompBoardDI = () => {
       content: _content,
       id: loginId
     }
-    console.log(postArr)
     BoardService.insertReplyBoard(postArr).then(res => {
       if (res) {
         alert('게시물이 등록되었습니다.')

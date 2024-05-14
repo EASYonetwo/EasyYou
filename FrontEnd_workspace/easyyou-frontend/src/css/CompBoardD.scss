@@ -97,9 +97,9 @@
         > tr {
           cursor: pointer;
           border-top: 1px solid #ccc;
-          &:hover{
-            .Board-title{
-              text-decoration:underline;
+          &:hover {
+            .Board-title {
+              text-decoration: underline;
             }
           }
         }
@@ -184,7 +184,13 @@
       }
       > tbody {
         > tr {
+          cursor: pointer;
           border-top: 1px solid #ccc;
+          &:hover {
+            .Board-title {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }
@@ -382,34 +388,40 @@
       left: 0;
       width: 8%;
     }
-    .BoardDD-btns-user {
+    .delete-btn {
       position: absolute;
       bottom: 10%;
       right: 0;
-      width: 20%;
-      .rewrite-btn {
-        width: 40%;
-        margin-right: 10px;
-      }
-      .delete-btn {
-        width: 40%;
-      }
+      width: 8%;
     }
   }
-
   .BoardDD-dataText {
     height: 10vh;
     box-sizing: border-box;
     border-bottom: 1px solid black;
     > h4 {
+      height: 60%;
       text-align: start;
       box-sizing: border-box;
       padding: 5px 10px;
     }
     > div {
-      display: flex;
-      justify-content: space-between;
+      position: relative;
+      height: 40%;
+      box-sizing: border-box;
       padding: 5px 10px;
+      > span:nth-child(1) {
+        position: absolute;
+        left: 10px;
+      }
+      > span:nth-child(2) {
+        position: absolute;
+        right: 10%;
+      }
+      > span:nth-child(3) {
+        position: absolute;
+        right: 10px;
+      }
     }
   }
   .BoardDD-content {
@@ -434,31 +446,28 @@
     height: 6vh;
     box-sizing: border-box;
     padding: 10px 0;
-    > span {
-      margin: 0 10px;
-      width: 10%;
-    }
-  }
-  .BoardDD-prevNext {
-    display: flex;
-    flex-direction: column;
-    height: 10vh;
-    box-sizing: border-box;
-    padding: 10px 0;
-    > div {
-      height: 50%;
-      text-align: start;
-      line-height: calc(5vh - 10px);
-      box-sizing: border-box;
-      padding: 0 10px;
-      border: 1px solid black;
-      &.prev {
-        border-bottom: none;
+    > button {
+      margin: 0 5px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      &.active {
+        > svg {
+          > path {
+            fill: red;
+          }
+        }
+      }
+      > svg {
+        > path {
+          fill: black;
+        }
       }
     }
   }
   .BoardDD-comment {
-    height: 26vh;
+    height: 36vh;
+    overflow: auto;
     .comment-title {
       height: 15%;
       text-align: start;
@@ -466,7 +475,7 @@
       padding: 0 10px;
       border: 1px solid black;
     }
-    .comment-main {
+    .comment-input {
       position: relative;
       width: 100%;
       height: 30%;
@@ -479,6 +488,7 @@
         border-right: 1px solid black;
         padding: 10px;
         padding-right: 60px;
+        background: rgb(224, 223, 223);
         resize: none;
       }
       > button {
@@ -489,7 +499,8 @@
         height: 70%;
       }
     }
-    .comment-comment {
+    .comment-main {
+      position: relative;
       height: 45%;
       text-align: start;
       box-sizing: border-box;
@@ -497,6 +508,7 @@
       border: 1px solid black;
       font-size: 0.5em;
       padding-top: 5px;
+      padding-bottom: 10px;
       .comment-id {
         height: 20%;
       }
@@ -512,15 +524,98 @@
         padding: 5px 0;
         box-sizing: border-box;
         > button {
-          width: 10%;
           border-radius: 0;
-          background-color: white;
+          background: none;
+          border: none;
+        }
+        .btn-text{
+          background-color: rgb(255, 255, 255);
         }
         .btn-like {
           margin-left: auto;
         }
         .btn-hate {
           margin-left: 30px;
+        }
+      }
+      .comment-navbar{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        box-sizing: border-box;
+        padding: 5px;
+        cursor: pointer;
+        >svg{
+          width: 100%;
+          height: 100%;
+        }
+        .comment-delete{
+          position: absolute;
+          display: none;
+          top:0;
+          right: 30px;
+          width: 50px;
+          background-color: #CCC;
+        }
+        &.active{
+          .comment-delete{
+            display: block;
+          }
+        }
+      }
+
+    }
+    .comment-comment-main {
+      position: relative;
+      height: 45%;
+      text-align: start;
+      box-sizing: border-box;
+      padding: 10px 50px;
+      border: 1px solid black;
+      font-size: 0.5em;
+      .comment-comment-id {
+        height: 30%;
+      }
+      .comment-comment-content {
+        height: 30%;
+      }
+      .comment-comment-date {
+        height: 30%;
+      }
+      .comment-comment-navbar{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        box-sizing: border-box;
+        padding: 5px;
+        cursor: pointer;
+        >svg{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .comment-comment-enter{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 50%;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        transform: translate(0,-50%);
+        >svg{
+          width: 40%;
+          height: 40%;
+          transform: rotate(90deg);
         }
       }
     }
@@ -543,36 +638,43 @@
       left: 0;
       width: 8%;
     }
-    .BoardFD-btns-user {
+    .delete-btn {
       position: absolute;
       bottom: 10%;
       right: 0;
-      width: 20%;
-      .rewrite-btn {
-        width: 40%;
-        margin-right: 10px;
-      }
-      .delete-btn {
-        width: 40%;
-      }
+      width: 8%;
     }
   }
-
   .BoardFD-dataText {
     height: 10vh;
     box-sizing: border-box;
     border-bottom: 1px solid black;
     > h4 {
+      height: 60%;
       text-align: start;
       box-sizing: border-box;
       padding: 5px 10px;
     }
     > div {
-      display: flex;
-      justify-content: space-between;
+      position: relative;
+      height: 40%;
+      box-sizing: border-box;
       padding: 5px 10px;
+      > span:nth-child(1) {
+        position: absolute;
+        left: 10px;
+      }
+      > span:nth-child(2) {
+        position: absolute;
+        right: 10%;
+      }
+      > span:nth-child(3) {
+        position: absolute;
+        right: 10px;
+      }
     }
   }
+
   .BoardFD-content {
     box-sizing: border-box;
     padding: 10px 0;
@@ -588,6 +690,7 @@
       background-color: rgba(white, 0.9);
     }
   }
+
   .BoardFD-likeHate {
     display: flex;
     align-items: center;
@@ -595,69 +698,83 @@
     height: 6vh;
     box-sizing: border-box;
     padding: 10px 0;
-    > span {
-      margin: 0 10px;
-      width: 10%;
-    }
-  }
-  .BoardFD-prevNext {
-    display: flex;
-    flex-direction: column;
-    height: 10vh;
-    box-sizing: border-box;
-    padding: 10px 0;
-    > div {
-      height: 50%;
-      text-align: start;
-      line-height: calc(5vh - 10px);
-      box-sizing: border-box;
-      padding: 0 10px;
-      border: 1px solid black;
-      &.prev {
-        border-bottom: none;
+    > button {
+      margin: 0 5px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      &.active {
+        > svg {
+          > path {
+            fill: red;
+          }
+        }
+      }
+      > svg {
+        > path {
+          fill: black;
+        }
       }
     }
   }
-  .BoardFD-comment {
-    height: 26vh;
-    .comment-title {
+
+  .BoardFD-file {
+    height: 36vh;
+    .file-title {
       height: 15%;
       text-align: start;
       box-sizing: border-box;
       padding: 0 10px;
       border: 1px solid black;
     }
-    .comment-main {
+    .file-main {
       display: flex;
       height: 70%;
       border: 1px solid black;
       border-top: none;
       background-color: white;
-      >li{
+      > div {
         width: 20%;
         box-sizing: border-box;
         padding: 10px;
-        .main-img{
+        .main-img {
           width: 50%;
           height: 50%;
-          margin:0 auto;
-        }
-        >div{
-          height: 25%;
-          box-sizing: border-box;
-          padding: 3px;
-          font-size: 0.8em;
-          >img{
+          margin: 0 auto;
+          > img {
             width: 100%;
             height: 100%;
           }
         }
-        >button{
+        >.main-file {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 80%;
+          height: 25%;
+          box-sizing: border-box;
+          font-size: 0.8em;
+          margin:0 auto;
+          .name{
+            width:60%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .size{  
+            width:40%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        > button {
           width: 80%;
           border-radius: 5px;
         }
       }
     }
+
   }
 }
 
