@@ -175,7 +175,11 @@
   width: 10%;
 }
 .BoardF .BoardF-b .BoardF-table > tbody > tr {
+  cursor: pointer;
   border-top: 1px solid #ccc;
+}
+.BoardF .BoardF-b .BoardF-table > tbody > tr:hover .Board-title {
+  text-decoration: underline;
 }
 .BoardF .page-nav {
   display: flex;
@@ -370,18 +374,11 @@
   left: 0;
   width: 8%;
 }
-.BoardDD .BoardDD-btns .BoardDD-btns-user {
+.BoardDD .BoardDD-btns .delete-btn {
   position: absolute;
   bottom: 10%;
   right: 0;
-  width: 20%;
-}
-.BoardDD .BoardDD-btns .BoardDD-btns-user .rewrite-btn {
-  width: 40%;
-  margin-right: 10px;
-}
-.BoardDD .BoardDD-btns .BoardDD-btns-user .delete-btn {
-  width: 40%;
+  width: 8%;
 }
 .BoardDD .BoardDD-dataText {
   height: 10vh;
@@ -389,14 +386,28 @@
   border-bottom: 1px solid black;
 }
 .BoardDD .BoardDD-dataText > h4 {
+  height: 60%;
   text-align: start;
   box-sizing: border-box;
   padding: 5px 10px;
 }
 .BoardDD .BoardDD-dataText > div {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  height: 40%;
+  box-sizing: border-box;
   padding: 5px 10px;
+}
+.BoardDD .BoardDD-dataText > div > span:nth-child(1) {
+  position: absolute;
+  left: 10px;
+}
+.BoardDD .BoardDD-dataText > div > span:nth-child(2) {
+  position: absolute;
+  right: 10%;
+}
+.BoardDD .BoardDD-dataText > div > span:nth-child(3) {
+  position: absolute;
+  right: 10px;
 }
 .BoardDD .BoardDD-content {
   box-sizing: border-box;
@@ -421,30 +432,21 @@
   box-sizing: border-box;
   padding: 10px 0;
 }
-.BoardDD .BoardDD-likeHate > span {
-  margin: 0 10px;
-  width: 10%;
+.BoardDD .BoardDD-likeHate > button {
+  margin: 0 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
-.BoardDD .BoardDD-prevNext {
-  display: flex;
-  flex-direction: column;
-  height: 10vh;
-  box-sizing: border-box;
-  padding: 10px 0;
+.BoardDD .BoardDD-likeHate > button.active > svg > path {
+  fill: red;
 }
-.BoardDD .BoardDD-prevNext > div {
-  height: 50%;
-  text-align: start;
-  line-height: calc(5vh - 10px);
-  box-sizing: border-box;
-  padding: 0 10px;
-  border: 1px solid black;
-}
-.BoardDD .BoardDD-prevNext > div.prev {
-  border-bottom: none;
+.BoardDD .BoardDD-likeHate > button > svg > path {
+  fill: black;
 }
 .BoardDD .BoardDD-comment {
-  height: 26vh;
+  height: 36vh;
+  overflow: auto;
 }
 .BoardDD .BoardDD-comment .comment-title {
   height: 15%;
@@ -453,12 +455,12 @@
   padding: 0 10px;
   border: 1px solid black;
 }
-.BoardDD .BoardDD-comment .comment-main {
+.BoardDD .BoardDD-comment .comment-input {
   position: relative;
   width: 100%;
   height: 30%;
 }
-.BoardDD .BoardDD-comment .comment-main > textarea {
+.BoardDD .BoardDD-comment .comment-input > textarea {
   width: 100%;
   height: 100%;
   border-radius: 0;
@@ -467,16 +469,18 @@
   border-right: 1px solid black;
   padding: 10px;
   padding-right: 60px;
+  background: rgb(224, 223, 223);
   resize: none;
 }
-.BoardDD .BoardDD-comment .comment-main > button {
+.BoardDD .BoardDD-comment .comment-input > button {
   position: absolute;
   top: 10px;
   right: 20px;
   width: 50px;
   height: 70%;
 }
-.BoardDD .BoardDD-comment .comment-comment {
+.BoardDD .BoardDD-comment .comment-main {
+  position: relative;
   height: 45%;
   text-align: start;
   box-sizing: border-box;
@@ -484,32 +488,113 @@
   border: 1px solid black;
   font-size: 0.5em;
   padding-top: 5px;
+  padding-bottom: 10px;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-id {
+.BoardDD .BoardDD-comment .comment-main .comment-id {
   height: 20%;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-content {
+.BoardDD .BoardDD-comment .comment-main .comment-content {
   height: 20%;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-date {
+.BoardDD .BoardDD-comment .comment-main .comment-date {
   height: 20%;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-btns {
+.BoardDD .BoardDD-comment .comment-main .comment-btns {
   display: flex;
   height: 40%;
   padding: 5px 0;
   box-sizing: border-box;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-btns > button {
-  width: 10%;
+.BoardDD .BoardDD-comment .comment-main .comment-btns > button {
   border-radius: 0;
-  background-color: white;
+  background: none;
+  border: none;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-btns .btn-like {
+.BoardDD .BoardDD-comment .comment-main .comment-btns .btn-text {
+  background-color: rgb(255, 255, 255);
+}
+.BoardDD .BoardDD-comment .comment-main .comment-btns .btn-like {
   margin-left: auto;
 }
-.BoardDD .BoardDD-comment .comment-comment .comment-btns .btn-hate {
+.BoardDD .BoardDD-comment .comment-main .comment-btns .btn-hate {
   margin-left: 30px;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  box-sizing: border-box;
+  padding: 5px;
+  cursor: pointer;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-navbar > svg {
+  width: 100%;
+  height: 100%;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-navbar .comment-delete {
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 30px;
+  width: 50px;
+  background-color: #CCC;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-navbar.active .comment-delete {
+  display: block;
+}
+.BoardDD .BoardDD-comment .comment-comment-main {
+  position: relative;
+  height: 45%;
+  text-align: start;
+  box-sizing: border-box;
+  padding: 10px 50px;
+  border: 1px solid black;
+  font-size: 0.5em;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-id {
+  height: 30%;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-content {
+  height: 30%;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date {
+  height: 30%;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  box-sizing: border-box;
+  padding: 5px;
+  cursor: pointer;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-navbar > svg {
+  width: 100%;
+  height: 100%;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-enter {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  transform: translate(0, -50%);
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-enter > svg {
+  width: 40%;
+  height: 40%;
+  transform: rotate(90deg);
 }
 
 .BoardFD {
@@ -531,18 +616,11 @@
   left: 0;
   width: 8%;
 }
-.BoardFD .BoardFD-btns .BoardFD-btns-user {
+.BoardFD .BoardFD-btns .delete-btn {
   position: absolute;
   bottom: 10%;
   right: 0;
-  width: 20%;
-}
-.BoardFD .BoardFD-btns .BoardFD-btns-user .rewrite-btn {
-  width: 40%;
-  margin-right: 10px;
-}
-.BoardFD .BoardFD-btns .BoardFD-btns-user .delete-btn {
-  width: 40%;
+  width: 8%;
 }
 .BoardFD .BoardFD-dataText {
   height: 10vh;
@@ -550,14 +628,28 @@
   border-bottom: 1px solid black;
 }
 .BoardFD .BoardFD-dataText > h4 {
+  height: 60%;
   text-align: start;
   box-sizing: border-box;
   padding: 5px 10px;
 }
 .BoardFD .BoardFD-dataText > div {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  height: 40%;
+  box-sizing: border-box;
   padding: 5px 10px;
+}
+.BoardFD .BoardFD-dataText > div > span:nth-child(1) {
+  position: absolute;
+  left: 10px;
+}
+.BoardFD .BoardFD-dataText > div > span:nth-child(2) {
+  position: absolute;
+  right: 10%;
+}
+.BoardFD .BoardFD-dataText > div > span:nth-child(3) {
+  position: absolute;
+  right: 10px;
 }
 .BoardFD .BoardFD-content {
   box-sizing: border-box;
@@ -582,66 +674,72 @@
   box-sizing: border-box;
   padding: 10px 0;
 }
-.BoardFD .BoardFD-likeHate > span {
-  margin: 0 10px;
-  width: 10%;
+.BoardFD .BoardFD-likeHate > button {
+  margin: 0 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
-.BoardFD .BoardFD-prevNext {
-  display: flex;
-  flex-direction: column;
-  height: 10vh;
-  box-sizing: border-box;
-  padding: 10px 0;
+.BoardFD .BoardFD-likeHate > button.active > svg > path {
+  fill: red;
 }
-.BoardFD .BoardFD-prevNext > div {
-  height: 50%;
-  text-align: start;
-  line-height: calc(5vh - 10px);
-  box-sizing: border-box;
-  padding: 0 10px;
-  border: 1px solid black;
+.BoardFD .BoardFD-likeHate > button > svg > path {
+  fill: black;
 }
-.BoardFD .BoardFD-prevNext > div.prev {
-  border-bottom: none;
+.BoardFD .BoardFD-file {
+  height: 36vh;
 }
-.BoardFD .BoardFD-comment {
-  height: 26vh;
-}
-.BoardFD .BoardFD-comment .comment-title {
+.BoardFD .BoardFD-file .file-title {
   height: 15%;
   text-align: start;
   box-sizing: border-box;
   padding: 0 10px;
   border: 1px solid black;
 }
-.BoardFD .BoardFD-comment .comment-main {
+.BoardFD .BoardFD-file .file-main {
   display: flex;
   height: 70%;
   border: 1px solid black;
   border-top: none;
   background-color: white;
 }
-.BoardFD .BoardFD-comment .comment-main > li {
+.BoardFD .BoardFD-file .file-main > div {
   width: 20%;
   box-sizing: border-box;
   padding: 10px;
 }
-.BoardFD .BoardFD-comment .comment-main > li .main-img {
+.BoardFD .BoardFD-file .file-main > div .main-img {
   width: 50%;
   height: 50%;
   margin: 0 auto;
 }
-.BoardFD .BoardFD-comment .comment-main > li > div {
-  height: 25%;
-  box-sizing: border-box;
-  padding: 3px;
-  font-size: 0.8em;
-}
-.BoardFD .BoardFD-comment .comment-main > li > div > img {
+.BoardFD .BoardFD-file .file-main > div .main-img > img {
   width: 100%;
   height: 100%;
 }
-.BoardFD .BoardFD-comment .comment-main > li > button {
+.BoardFD .BoardFD-file .file-main > div > .main-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 25%;
+  box-sizing: border-box;
+  font-size: 0.8em;
+  margin: 0 auto;
+}
+.BoardFD .BoardFD-file .file-main > div > .main-file .name {
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.BoardFD .BoardFD-file .file-main > div > .main-file .size {
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.BoardFD .BoardFD-file .file-main > div > button {
   width: 80%;
   border-radius: 5px;
 }
