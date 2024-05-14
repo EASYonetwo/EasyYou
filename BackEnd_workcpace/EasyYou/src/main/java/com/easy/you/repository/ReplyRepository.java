@@ -17,12 +17,12 @@ public interface ReplyRepository extends JpaRepository<ReplyVo, Long>{
 			+ "COALESCE((SELECT COUNT(rd.replydislikeseq) FROM ReplyDislikesVo rd WHERE rd.reply.replyseq = r.replyseq), 0) AS countDislikes, "
 			+ "CASE (SELECT COUNT(rd.user.id) FROM ReplyDislikesVo rd WHERE rd.reply.replyseq = r.replyseq AND rd.user.id = ?2) WHEN 1 THEN 'Y' ELSE 'N' END AS replyDislikes "
 			+ "FROM ReplyVo r " + "WHERE r.board.boardseq = ?1 AND r.delflag = 'N' "
-			+ "ORDER BY groupnum DESC, depthnum ")
+			+ "ORDER BY groupnum DESC, depthnum DESC")
 	List<ReplyRepositoryInterface> findByBoardBoardseqReply(long boardSeq, String id);
 
-	@Query("SELECT MAX(r.groupnum) FROM ReplyVo r WHERE r.board.boardseq = ?1")
+	@Query("SELECT COALESCE(MAX(r.groupnum)+1,0) FROM ReplyVo r WHERE r.board.boardseq = ?1")
 	int findMaxGroupnumByBoardBoardseq(long boardSeq);
 
-	@Query("SELECT MAX(r.depthnum) FROM ReplyVo r WHERE r.groupnum = ?2 AND r.board.boardseq = ?1")
+	@Query("SELECT COALESCE(MAX(r.depthnum)+1,0) FROM ReplyVo r WHERE r.groupnum = ?2 AND r.board.boardseq = ?1")
 	int findMaxDepthnumByGroupnum(long boardSeq,int groupnum);
 }

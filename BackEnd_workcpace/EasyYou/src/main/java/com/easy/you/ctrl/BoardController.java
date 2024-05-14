@@ -1,6 +1,8 @@
 package com.easy.you.ctrl;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,6 +50,7 @@ import com.easy.you.repository.ReplyRepository;
 import com.easy.you.repository.SeeCountRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 
 
@@ -130,7 +133,6 @@ public class BoardController {
 	//상세 조회
 	@GetMapping(value = "/board/{boardSeq}/{id}")
 	public ResponseEntity<Map<String, Object>> getOneReplyBoard(@PathVariable long boardSeq , @PathVariable String id, HttpServletRequest request){
-		System.out.println("=======new Date()"+new Date());
 		//조회수 증가
 		try {
 			String ip = GetClientIp.getClientIP(request);
@@ -217,12 +219,12 @@ public class BoardController {
 		userVo.setId(id);
 		String content = (String)map.get("content");
 		int maxGroupNum = replyRepository.findMaxGroupnumByBoardBoardseq(boardSeq);
-		ReplyVo replyVo = new ReplyVo(0, boardVo, maxGroupNum+1, 0, content, new Date(), "N", userVo);
+		ReplyVo replyVo = new ReplyVo(0, boardVo, maxGroupNum, 0, content, new Date(), "N", userVo);
 		replyRepository.save(replyVo);
 		return "ok";
 	}
 	//답글 작성
-	@PostMapping(value = "/rereply")
+	@PostMapping(value = "/replyReply")
 	public String insertReplyReply(@RequestBody Map<String, Object> map) {
 		UserVo userVo = new UserVo();
 		String id = (String)map.get("id");
@@ -232,7 +234,7 @@ public class BoardController {
 		ReplyVo reply = replyRepository.findById(replySeq).get();
 		long boardSeq = reply.getBoard().getBoardseq();
 		int maxDepthnum = replyRepository.findMaxDepthnumByGroupnum(boardSeq,reply.getGroupnum());
-		ReplyVo reReplyVo = new ReplyVo(0, reply.getBoard(), reply.getGroupnum(), maxDepthnum+1, content, new Date(), "N", userVo);
+		ReplyVo reReplyVo = new ReplyVo(0, reply.getBoard(), reply.getGroupnum(), maxDepthnum, content, new Date(), "N", userVo);
 		replyRepository.save(reReplyVo);
 		return "ok";
 	}
@@ -304,6 +306,22 @@ public class BoardController {
 		}
 		return "ok";
 	}
+	
+	/* 파일 */
+	//파일 다운로드
+	@GetMapping(value = "/download/{fileSeq}")
+	public void download(@PathVariable long fileSeq, HttpServletResponse response) throws IOException {
+		Optional<FileStorageVo> file = fileStorageRepository.findById(fileSeq);
+		
+		response.setContentType("application/octext-stream");
+		response.setContentLength(file.get().getFilesize());
+		response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(file.get().getFilename(),"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+	    response.getOutputStream().write(file.get().getFile());
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	}
+	
 	
 	//게시글 삭제(delflag -> N)
 	@PatchMapping(value = "/board/delete/{boardSeq}")

@@ -92,6 +92,12 @@ class BoardService{
         return axios.post(USER_API_BASE_URL+"/board/file",formData);
     }
 
+    //파일 다운로드
+    //파일번호을 담아서 보내주세요
+    downloadFile(fileSeq){
+        return axios.get(USER_API_BASE_URL+"/download/"+fileSeq)
+    }
+
     //게시글 삭제
     deleteboard(boardSeq){
         return axios.patch(USER_API_BASE_URL+"/board/delete/"+boardSeq);
@@ -104,36 +110,36 @@ class BoardService{
 
     //게시글 좋아요
     boardLikes(boardSeq, id){
-        return axios.get(USER_API_BASE_URL+"/board/likes"+boardSeq+"/"+id);
+        return axios.get(USER_API_BASE_URL+"/board/likes/"+boardSeq+"/"+id);
     }
     //게시글 좋아요 취소
     cancelBoardLikes(boardSeq, id){
-        return axios.delete(USER_API_BASE_URL+"/board/cancelLikes"+boardSeq+"/"+id);
+        return axios.delete(USER_API_BASE_URL+"/board/cancelLikes/"+boardSeq+"/"+id);
     }
     //게시글 싫어요
     boardDislikes(boardSeq, id){
-        return axios.get(USER_API_BASE_URL+"/board/dislikes"+boardSeq+"/"+id);
+        return axios.get(USER_API_BASE_URL+"/board/dislikes/"+boardSeq+"/"+id);
     }
     //게시글 싫어요 취소
     cancelboardDislikes(boardSeq, id){
-        return axios.delete(USER_API_BASE_URL+"/board/cancelDislikes"+boardSeq+"/"+id);
+        return axios.delete(USER_API_BASE_URL+"/board/cancelDislikes/"+boardSeq+"/"+id);
     }
 
     //댓글 좋아요
     replyLikes(replySeq, id){
-        return axios.get(USER_API_BASE_URL+"/reply/likes"+replySeq+"/"+id);
+        return axios.get(USER_API_BASE_URL+"/reply/likes/"+replySeq+"/"+id);
     }
     //댓글 좋아요 취소
     cancelReplyLikes(replySeq, id){
-        return axios.delete(USER_API_BASE_URL+"/reply/cancelLikes"+replySeq+"/"+id);
+        return axios.delete(USER_API_BASE_URL+"/reply/cancelLikes/"+replySeq+"/"+id);
     }
     //댓글 싫어요
     replyDislikes(replySeq, id){
-        return axios.get(USER_API_BASE_URL+"/reply/dislikes"+replySeq+"/"+id);
+        return axios.get(USER_API_BASE_URL+"/reply/dislikes/"+replySeq+"/"+id);
     }
     //댓글 싫어요 취소
     cancelReplyDislikes(replySeq, id){
-        return axios.delete(USER_API_BASE_URL+"/reply/cancelDislikes"+replySeq+"/"+id);
+        return axios.delete(USER_API_BASE_URL+"/reply/cancelDislikes/"+replySeq+"/"+id);
     }
 }
 

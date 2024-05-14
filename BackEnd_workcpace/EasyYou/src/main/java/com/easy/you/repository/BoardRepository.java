@@ -34,7 +34,7 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 	List<BoardRepositoryInterfaceCommon> findByReplyOrderByRegdateDesc();
 	
 	// 게시판 전체 조회 - 파일
-	@Query("SELECT b.boardseq AS boardseq, b.user AS user, CONCAT(b.title, ' (', COALESCE((SELECT COUNT(f.fileseq) FROM FileStorageVo f WHERE f.board.boardseq = b.boardseq), 0), ')') AS title, "
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, CONCAT(b.title, ' (', COALESCE((SELECT COUNT(f.fileseq) FROM FileStorageVo f WHERE f.board.boardseq = b.boardseq AND f.enabled = 'Y'), 0), ')') AS title, "
 			+ "b.content AS content, "
 			+ "b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , "
 			+ "COALESCE((SELECT COUNT(bl.boardlikeseq) FROM BoardLikesVo bl WHERE bl.board.boardseq = b.boardseq), 0) AS countLikes, "

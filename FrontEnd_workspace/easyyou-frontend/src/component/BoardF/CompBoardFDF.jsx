@@ -15,7 +15,7 @@ const CompBoardFDF = ({ data}) => {
   return (
     <div>
       <div className='main-img'  >
-        <img src="" alt="" />
+        <img src={`data:image/png;base64,${data.file}`} alt="" />
       </div>
       <div className='main-file'>
         <span className='name'>{(data) && filename}</span>
