@@ -6,4 +6,6 @@ import com.easy.you.model.SeeCountVo;
 
 public interface SeeCountRepository extends JpaRepository<SeeCountVo, Long>{
 
+	SeeCountVo findByBoardBoardseqAndSeeip(long boardSeq, String ip);
+
 }

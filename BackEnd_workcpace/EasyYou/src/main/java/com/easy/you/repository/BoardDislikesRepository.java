@@ -6,4 +6,6 @@ import com.easy.you.model.BoardDislikesVo;
 
 public interface BoardDislikesRepository extends JpaRepository<BoardDislikesVo, Long>{
 
+	BoardDislikesVo findByBoardBoardseqAndUserId(long boardSeq, String id);
+
 }
