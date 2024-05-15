@@ -759,20 +759,20 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  border-top: 1px solid black;
+  border-top: 1px solid #ccc;
   padding: 2px 15px;
   font-size: 0.7em;
 }
 .Dpost > span {
-  background-color: red;
+  color: red;
   box-sizing: border-box;
   padding: 2px 5px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
 }
 .Dpost > span.New {
   background-color: yellow;
-  color: rgba(0, 0, 0, 0.9);
+  border-radius: 50%;
+  color: rgba(255, 0, 0, 0.9);
 }
 .Dpost .Text {
   flex: 1;
@@ -805,15 +805,15 @@
   font-size: 0.7em;
 }
 .Fpost > span {
-  background-color: red;
+  color: red;
   box-sizing: border-box;
   padding: 2px 5px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
 }
 .Fpost > span.New {
   background-color: yellow;
-  color: rgba(0, 0, 0, 0.9);
+  border-radius: 50%;
+  color: rgba(255, 0, 0, 0.9);
 }
 .Fpost .Mimg {
   width: 15%;

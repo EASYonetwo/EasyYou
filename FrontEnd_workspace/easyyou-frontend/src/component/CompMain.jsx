@@ -4,6 +4,9 @@ import CompDNpost from './DFpost/CompDNpost';
 import CompFHpost from './DFpost/CompFHpost';
 import CompFNpost from './DFpost/CompFNpost';
 import BoardService from '../service/BoardService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
+
 
 const CompMain = () => {
   const [_DGarr, _setDGarr] = useState([])
@@ -22,6 +25,19 @@ const CompMain = () => {
       _setFCarr(res.data.latest)
     })
   }, [])
+
+  const jiwonMail = () => {
+    window.open("mailto:2jiwons2@naver.com");
+  };
+  const jiwonTel = () => {
+    window.open("tel:010-4290-7420");
+  };
+  const taeMail = () => {
+    window.open("mailto:bsxorud@naver.com");
+  };
+  const taeTel = () => {
+    window.open("tel:010-5157-4711");
+  };
 
 
   return (
@@ -56,15 +72,17 @@ const CompMain = () => {
         </div>
       </div>
       <div className='Main-b'>
-        <div className='card-e'>
+        <div className='card-y'>
           <h3>유태경</h3>
-          <p>www@naver.com</p>
-          <p>010-1234-5678</p>
+          <p>&#91;FrontEnd Developer&#93;</p>
+          <p onClick={taeMail}>bsxorud@naver.com</p>
+          <p onClick={taeTel}>010-5157-4711</p>
         </div>
         <div className='card-y'>
           <h3>이지원</h3>
-          <p>a@naver.com</p>
-          <p>010-1234-5678</p>
+          <p>&#91;BackEnd Developer&#93;</p>
+          <p onClick={jiwonMail}>2jiwons2@naver.com</p>
+          <p onClick={jiwonTel}>010-7420-4290</p>
         </div>
       </div>
     </>

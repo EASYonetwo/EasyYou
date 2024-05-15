@@ -11,8 +11,8 @@
 .Main-h .board-d {
   width: 45%;
   height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 3%;
+  border: 1px solid darkgreen;
 }
 .Main-h .board-d > h2 {
   height: 20%;
@@ -33,8 +33,8 @@
 .Main-h .board-f {
   width: 45%;
   height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 3%;
+  border: 1px solid darkgreen;
 }
 .Main-h .board-f > h2 {
   height: 20%;
@@ -61,7 +61,7 @@
   height: 30vh;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 30px 250px;
+  padding: 30px 150px;
 }
 .Main-b .card-e {
   display: flex;
@@ -79,11 +79,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 10px;
-  width: 30%;
-  border: 1px solid rgba(255, 0, 0, 0.7);
+  background-image: url("https://cdn.crowdpic.net/detail-thumb/thumb_d_890DBD02B77089547C0E506DD35A3788.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px 20px;
+  width: 28%;
+  border: 1px solid rgba(204, 204, 204, 0.7);
   border-radius: 10px;
-}
-.Main-b .card-y > p:nth-child(2), .Main-b .card-y :nth-child(3) {
   text-align: right;
+}
+.Main-b .card-y > p:nth-child(2) {
+  font-size: 10px;
+}
+.Main-b .card-y > p:nth-child(3):hover, .Main-b .card-y :nth-child(4):hover {
+  cursor: pointer;
 }/*# sourceMappingURL=CompMain.css.map */
