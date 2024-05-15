@@ -506,9 +506,16 @@
   box-sizing: border-box;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-btns > button {
-  border-radius: 0;
-  background: none;
+  margin: 0 5px;
   border: none;
+  background: none;
+  cursor: pointer;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-btns > button.active > svg > path {
+  fill: red;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-btns > button > svg > path {
+  fill: black;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-btns .btn-text {
   background-color: rgb(255, 255, 255);
@@ -529,11 +536,11 @@
   line-height: 30px;
   box-sizing: border-box;
   padding: 5px;
-  cursor: pointer;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-navbar > svg {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-navbar .comment-delete {
   position: absolute;
@@ -541,7 +548,10 @@
   top: 0;
   right: 30px;
   width: 50px;
-  background-color: #CCC;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-navbar .comment-delete > button {
+  cursor: pointer;
+  width: 100%;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-navbar.active .comment-delete {
   display: block;
@@ -719,25 +729,26 @@
 }
 .BoardFD .BoardFD-file .file-main > div > .main-file {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   width: 80%;
-  height: 25%;
+  height: 30%;
   box-sizing: border-box;
-  font-size: 0.8em;
+  font-size: 0.6em;
   margin: 0 auto;
 }
 .BoardFD .BoardFD-file .file-main > div > .main-file .name {
-  width: 60%;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 5px 0;
+  box-sizing: border-box;
 }
 .BoardFD .BoardFD-file .file-main > div > .main-file .size {
-  width: 40%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 100%;
+  padding: 5px 0;
+  box-sizing: border-box;
 }
 .BoardFD .BoardFD-file .file-main > div > button {
   width: 80%;

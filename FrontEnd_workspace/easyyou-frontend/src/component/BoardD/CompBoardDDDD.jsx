@@ -16,13 +16,10 @@ const CompBoardDDDD = ({ data }) => {
         <div className='comment-comment-delete'>
           <span>삭제</span>
         </div>
-      </nav>
+      </nav>  
       <span className='comment-comment-enter'>
         <FontAwesomeIcon icon={faArrowTurnUp} />
       </span>
-
-
-
     </div>
   );
 };

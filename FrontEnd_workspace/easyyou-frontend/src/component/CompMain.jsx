@@ -12,17 +12,16 @@ const CompMain = () => {
   const [_FCarr, _setFCarr] = useState([])
 
 
-
   useEffect(() => {
     BoardService.mainReplyBoard().then(res => {
       _setDGarr(res.data.like)
       _setDCarr(res.data.latest)
     })
-    BoardService.mainFileBoard().then(res=>{
+    BoardService.mainFileBoard().then(res => {
       _setFGarr(res.data.like)
       _setFCarr(res.data.latest)
     })
-  },[])
+  }, [])
 
 
   return (
@@ -59,7 +58,7 @@ const CompMain = () => {
       <div className='Main-b'>
         <div className='card-e'>
           <h3>유태경</h3>
-          <p>a@naver.com</p>
+          <p>www@naver.com</p>
           <p>010-1234-5678</p>
         </div>
         <div className='card-y'>
