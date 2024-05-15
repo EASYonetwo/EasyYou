@@ -15,17 +15,16 @@ const CompMain = () => {
   const [_FCarr, _setFCarr] = useState([])
 
 
-
   useEffect(() => {
     BoardService.mainReplyBoard().then(res => {
       _setDGarr(res.data.like)
       _setDCarr(res.data.latest)
     })
-    BoardService.mainFileBoard().then(res=>{
+    BoardService.mainFileBoard().then(res => {
       _setFGarr(res.data.like)
       _setFCarr(res.data.latest)
     })
-  },[])
+  }, [])
 
   const jiwonMail = () => {
     window.open("mailto:2jiwons2@naver.com");
