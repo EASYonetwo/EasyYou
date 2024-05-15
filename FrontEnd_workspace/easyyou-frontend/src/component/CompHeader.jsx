@@ -16,6 +16,7 @@ const CompHeader = () => {
   function fnLogOut() {
     _setIsLogin(false)
     _setLoginId()
+    window.localStorage.setItem('UserStorage', '')
   }
 
   return (

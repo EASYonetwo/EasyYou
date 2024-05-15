@@ -32,16 +32,13 @@ function UserId() {
 function App() {
   const [_isLogin, _setIsLogin] = useState(UserId().userLogin)
   const [_loginId, _setLoginId] = useState(UserId().user.id)
+  const [_loginAuth, _setLoginAuth] = useState(UserId().user.auth)
 
-  useEffect(() => {
-    setTimeout(() => {
-      window.localStorage.setItem('UserStorage','')
-    },1000*30)
-  })
+  
   return (
     <div className="App">
       <BrowserRouter>
-        <AppContext.Provider value={{ _isLogin, _setIsLogin, _loginId, _setLoginId }}>
+        <AppContext.Provider value={{ _isLogin, _setIsLogin, _loginId, _setLoginId , _loginAuth, _setLoginAuth }}>
           <CompHeader></CompHeader>
           <Routes>
             <Route path='/' element={<CompMain />} />

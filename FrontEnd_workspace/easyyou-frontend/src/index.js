@@ -8,6 +8,7 @@ import './css/CompFooter.css'
 import './css/CompBoardD.css'
 import './css/CompLogin.css'
 import './css/style.css'
+import './css/PortpolioJiwon.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

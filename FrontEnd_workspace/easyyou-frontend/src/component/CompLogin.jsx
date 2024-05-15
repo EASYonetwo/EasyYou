@@ -27,7 +27,11 @@ const CompLogin = () => {
         if (res.data.id === _loginId && res.data.password === _loginPw) {
           alert('로그인 확인되었습니다')
           _setIsLogin(true)
-          window.localStorage.setItem('UserStorage', JSON.stringify(log))
+          const allLog = {
+            id: _loginId,
+            auth:res.data.auth
+          }
+          window.localStorage.setItem('UserStorage', JSON.stringify(allLog))
           navigate('/')
         }
         else {

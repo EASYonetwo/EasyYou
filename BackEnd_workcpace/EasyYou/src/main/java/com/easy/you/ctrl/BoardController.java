@@ -84,7 +84,7 @@ public class BoardController {
 	public Map<String, Object> likesAndNewRBoard(){
 		Pageable pageable = PageRequest.of(0, 3);
 		List<BoardRepositoryInterface> likesPosts = boardLikesRepository.findTop3MostLikedByBtypeR(pageable);
-		List<BoardVo> latestPosts = boardRepository.findTop5ByBtypeOrderByRegdateDesc("R");
+		List<BoardVo> latestPosts = boardRepository.findTop5ByBtypeAndDelflagOrderByRegdateDesc("R","N");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("like", likesPosts);
 		map.put("latest", latestPosts);
@@ -274,12 +274,12 @@ public class BoardController {
 		String title = (String) map.get("title");
 		String content = (String) map.get("content");
 
-		if (title == "") {
+		if (title.trim() == "") {
 			boardVo.setTitle("제목없음");
 		} else {
 			boardVo.setTitle(title);
 		}
-		if (content == "") {
+		if (content.trim() == "") {
 			boardVo.setContent("내용없음");
 		} else {
 			boardVo.setContent(content);
