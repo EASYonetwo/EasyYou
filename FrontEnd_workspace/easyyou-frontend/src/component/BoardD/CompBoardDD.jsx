@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../App';
 import BoardService from '../../service/BoardService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown, faEye ,faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import CompBoardDDD from './CompBoardDDD';
 const CompBoardDD = () => {
   const { _isLogin, _loginId } = useContext(AppContext)
@@ -41,7 +41,6 @@ const CompBoardDD = () => {
         }
       }
     })
-
   }, [_isLogin, dataSeq, _loginId])
 
   function fnClicklikeBtn() {
@@ -121,6 +120,7 @@ const CompBoardDD = () => {
       if (window.confirm('정말 삭제 하시겠습니까?') === true) {
         BoardService.deleteboard(seq).then(res => {
           navigate('/BoardD')
+          alert('삭제되었습니다.')
         })
       }
     }
@@ -134,7 +134,7 @@ const CompBoardDD = () => {
   return (
     <div className='BoardDD'>
       <div className='BoardDD-btns'>
-        <button className='back-btn' onClick={() => { navigate('/BoardD') }}>목록</button>
+        <button className='back-btn' onClick={() => { navigate('/BoardD') }}><FontAwesomeIcon icon={faArrowLeft} /></button>
         <button className='delete-btn' onClick={fnBoardDataDelect}>삭제</button>
       </div>
       <div className='BoardDD-dataText'>
@@ -165,7 +165,7 @@ const CompBoardDD = () => {
         </div>
 
         {
-          (_getData) && _getData.replyVos.filter(v => v.depthnum === 0).map(v => <CompBoardDDD key={v.replyseq} data={v} getdata={_getData.replyVos} replyData={(_getData.replyVos.filter(v=>v.depthnum === 0))} etcData={_getData.replyVos.filter(v => v.depthnum !== 0)} />)
+          (_getData) && _getData.replyVos.filter(v => v.depthnum === 0).map((v,index) => <CompBoardDDD key={v.replyseq} data={v} getdata={_getData.replyVos} index={index} replyData={(_getData.replyVos.filter(v=>v.depthnum === 0))} etcData={_getData.replyVos.filter(v => v.depthnum !== 0)} />)
         }
 
       </div>

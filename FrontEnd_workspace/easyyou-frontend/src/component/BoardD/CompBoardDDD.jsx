@@ -1,18 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import CompBoardDDDD from './CompBoardDDDD';
 import BoardService from '../../service/BoardService';
 import { AppContext } from '../../App';
 import { useLocation } from 'react-router-dom';
+import CompBoardDDDDI from './CompBoardDDDDI';
 
 
-const CompBoardDDD = ({ data, etcData, getdata, replyData }) => {
+const CompBoardDDD = ({ data, etcData, getdata, replyData ,index}) => {
   const { _isLogin, _loginId } = useContext(AppContext)
   const { id, content, regdate, countDislikes, countLikes, groupnum, replyseq, replyDislikes, replyLikes } = data
   const [_darr, setDarr] = useState()
   const location = useLocation()
 
+  useEffect(() => {
+    if(replyLikes==="Y"){
+      document.querySelector(`.comment-btns >.like${index}`).classList.add('active')
+    }
+    else{
+      document.querySelector(`.comment-btns >.like${index}`).classList.remove('active')
+    }
+    if(replyDislikes==="Y"){
+      document.querySelector(`.comment-btns >.hate${index}`).classList.add('active')
+    }
+    else{
+      document.querySelector(`.comment-btns >.hate${index}`).classList.remove('active')
+    }
+    
+
+    if (!_isLogin) {
+      document.querySelectorAll('.comment-delete > button').forEach(v => {
+        v.disabled = "true"
+      })
+    }
+
+  }, [_loginId, _isLogin, getdata, replyData,index,replyDislikes,replyLikes])
 
   function fnClickD() {
     let darr
@@ -25,39 +48,6 @@ const CompBoardDDD = ({ data, etcData, getdata, replyData }) => {
       setDarr(darr)
     }
   }
-
-  useEffect(() => {
-/*     replyData.filter(v => {
-      if (v.replyLikes === "Y") {
-        document.querySelector('.btn-like').classList.add('active')
-      }
-      else {
-        document.querySelector('.btn-like').classList.remove('active')
-      }
-      if (v.replyDislikes === "Y") {
-        document.querySelector('.btn-hate').classList.add('active')
-      }
-      else {
-        document.querySelector('.btn-hate').classList.remove('active')
-      }
-    }
-    ) */
-
-
-    if (!_isLogin) {
-      document.querySelectorAll('.comment-delete > button').forEach(v => {
-        v.disabled = "true"
-      })
-    }
-
-
-
-
-
-
-
-
-  }, [_loginId, _isLogin, getdata, replyData])
 
   function fnCommentDelect() {
     if (_isLogin) {
@@ -132,17 +122,21 @@ const CompBoardDDD = ({ data, etcData, getdata, replyData }) => {
         <div className='comment-date'>{regdate.slice(0, 10)} {regdate.slice(11, 19)}</div>
         <div className='comment-btns'>
           <button className='btn-text' onClick={fnClickD}>답글 {etcData.filter(v => v.groupnum === groupnum).length} </button>
-          <button onClick={fnClicklikeBtn} className='btn-like'><FontAwesomeIcon icon={faThumbsUp} /> {countLikes}</button>
-          <button onClick={fnClickdisLikeBtn} className='btn-hate'><FontAwesomeIcon icon={faThumbsDown} /> {countDislikes}</button>
+          <button onClick={fnClicklikeBtn} className={`btn-like like${index}`}><FontAwesomeIcon icon={faThumbsUp} /> {countLikes}</button>
+          <button onClick={fnClickdisLikeBtn} className={`btn-hate hate${index}`}><FontAwesomeIcon icon={faThumbsDown} /> {countDislikes}</button>
         </div>
-        <nav className='comment-navbar' onClick={(e) => { e.currentTarget.classList.toggle('active') }}>
-          <FontAwesomeIcon icon={faEllipsisVertical} />
-          <div className='comment-delete' onClick={fnCommentDelect}>
-            <button>삭제</button>
-          </div>
-        </nav>
+        <div className='comment-delete' onClick={fnCommentDelect}>
+          <button>삭제</button>
+        </div>
       </div>
-      {(_darr) && _darr.map(v => <CompBoardDDDD key={v.replyseq} data={v} etcData={etcData} />)}
+      {
+        (_darr) && _darr.map((v,index) => <CompBoardDDDD key={v.replyseq} data={v} index={index} etcData={etcData} />)
+      }
+      {
+        (_darr) && <CompBoardDDDDI id={_loginId} seq={replyseq} />
+      }
+
+
     </>
   );
 };

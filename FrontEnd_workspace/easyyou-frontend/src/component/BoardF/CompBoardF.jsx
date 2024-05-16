@@ -97,12 +97,12 @@ const CompBoardF = () => {
         </table>
       </div>
       <div className='page-nav' >
-        <button onClick={fnClickPrev}>이전</button>
+        <button onClick={fnClickPrev} className='page-prev'>이전</button>
         {
           (_btnArr) && _btnArr.map((v, index) => <button onClick={fnClickBtn} key={index} value={index + 1}>{index + 1}</button>
           )
         }
-        <button onClick={fnClickNext}>다음</button>
+        <button onClick={fnClickNext} className='page-next'>다음</button>
       </div>
     </div>
   );

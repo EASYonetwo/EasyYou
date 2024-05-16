@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +16,7 @@ const CompHeader = () => {
   function fnLogOut() {
     _setIsLogin(false)
     _setLoginId()
+    window.localStorage.setItem('UserStorage', '')
   }
 
   return (

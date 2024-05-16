@@ -113,6 +113,8 @@
       width: 30px;
       margin: 20px 30px;
       border: none;
+      background: none;
+      cursor: pointer;
       &.active {
         color: red;
       }
@@ -149,7 +151,7 @@
     margin: 0 auto;
     box-sizing: border-box;
     padding: 0 100px;
-    margin-top: 50px;
+    margin-top: 60px;
     .BoardF-table {
       width: 100%;
       height: 100%;
@@ -162,10 +164,10 @@
           border-bottom: 2px solid #ccc;
           > th {
             &:nth-child(1) {
-              width: 10%;
+              width: 5%;
             }
             &:nth-child(2) {
-              width: 40%;
+              width: 45%;
             }
             &:nth-child(3) {
               width: 15%;
@@ -200,8 +202,10 @@
     justify-content: center;
     > button {
       width: 30px;
-      margin: 0 30px;
+      margin: 20px 30px;
       border: none;
+      background: none;
+      cursor: pointer;
       &.active {
         color: red;
       }
@@ -220,8 +224,11 @@
       position: absolute;
       top: 50%;
       left: 100px;
-      width: 7%;
       transform: translate(0, -50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
     }
   }
   .BoardDI-b {
@@ -300,8 +307,11 @@
       position: absolute;
       top: 50%;
       left: 100px;
-      width: 7%;
       transform: translate(0, -50%);
+      border: none;
+      background: none;
+      font-size: 1.2em;
+      cursor: pointer;
     }
   }
   .BoardFI-b {
@@ -377,6 +387,7 @@
   text-align: center;
   box-sizing: border-box;
   padding: 0 100px;
+  overflow: auto;
   .BoardDD-btns {
     position: relative;
     height: 8vh;
@@ -386,7 +397,10 @@
       position: absolute;
       top: 10%;
       left: 0;
-      width: 8%;
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
     }
     .delete-btn {
       position: absolute;
@@ -467,7 +481,7 @@
   }
   .BoardDD-comment {
     height: 36vh;
-    overflow: auto;
+
     .comment-title {
       height: 15%;
       text-align: start;
@@ -528,10 +542,17 @@
           border: none;
           background: none;
           cursor: pointer;
-          &.active {
+          &.btn-like.active {
             > svg {
               > path {
                 fill: red;
+              }
+            }
+          }
+          &.btn-hate.active {
+            > svg {
+              > path {
+                fill: blue;
               }
             }
           }
@@ -541,7 +562,7 @@
             }
           }
         }
-        .btn-text{
+        .btn-text {
           background-color: rgb(255, 255, 255);
         }
         .btn-like {
@@ -551,39 +572,16 @@
           margin-left: 30px;
         }
       }
-      .comment-navbar{
+      .comment-delete {
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        box-sizing: border-box;
-        padding: 5px;
-        >svg{
-          width: 100%;
-          height: 100%;
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        > button {
           cursor: pointer;
-        }
-        .comment-delete{
-          position: absolute;
-          display: none;
-          top:0;
-          right: 30px;
-          width: 50px;
-          >button{
-            cursor: pointer;
-            width: 100%;
-          }
-        }
-        &.active{
-          .comment-delete{
-            display: block;
-          }
+          width: 100%;
         }
       }
-
     }
     .comment-comment-main {
       position: relative;
@@ -591,34 +589,79 @@
       text-align: start;
       box-sizing: border-box;
       padding: 10px 50px;
+      padding-right: 10px;
       border: 1px solid black;
       font-size: 0.5em;
       .comment-comment-id {
-        height: 30%;
+        height: 20%;
+      }
+      .comment-comment-input {
+        width: 100%;
+        height: 80%;
+        border-radius: 0;
+        box-sizing: border-box;
+        resize: none;
+      }
+      .comment-comment-inputBtn {
+        position: absolute;
+        right: 0;
+        top: 80%;
+        width: 50px;
+        height: 30px;
+        transform: translate(0, -50%);
       }
       .comment-comment-content {
-        height: 30%;
+        height: 40%;
+        margin-top: 10px;
       }
       .comment-comment-date {
-        height: 30%;
-      }
-      .comment-comment-navbar{
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        box-sizing: border-box;
-        padding: 5px;
-        cursor: pointer;
-        >svg{
-          width: 100%;
-          height: 100%;
+        position: relative;
+        height: 20%;
+        > button {
+          position: absolute;
+          margin: 0 5px;
+          border: none;
+          background: none;
+          cursor: pointer;
+          &.btn-like.active {
+            > svg {
+              > path {
+                fill: red;
+              }
+            }
+          }
+          &.btn-hate.active {
+            > svg {
+              > path {
+                fill: blue;
+              }
+            }
+          }
+          > svg {
+            > path {
+              fill: black;
+            }
+          }
+          &.btn-like {
+            right: 60px;
+          }
+          &.btn-hate {
+            right: 0;
+            margin-left: 30px;
+          }
         }
       }
-      .comment-comment-enter{
+      .comment-comment-delete {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        > button {
+          cursor: pointer;
+          width: 100%;
+        }
+      }
+      .comment-comment-enter {
         position: absolute;
         display: flex;
         align-items: center;
@@ -627,8 +670,8 @@
         left: 10px;
         width: 40px;
         height: 40px;
-        transform: translate(0,-50%);
-        >svg{
+        transform: translate(0, -50%);
+        > svg {
           width: 40%;
           height: 40%;
           transform: rotate(90deg);
@@ -762,7 +805,7 @@
             height: 100%;
           }
         }
-        >.main-file {
+        > .main-file {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -770,19 +813,19 @@
           height: 30%;
           box-sizing: border-box;
           font-size: 0.6em;
-          margin:0 auto;
+          margin: 0 auto;
 
-          .name{
+          .name {
             width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            padding: 5px 0 ;
+            padding: 5px 0;
             box-sizing: border-box;
           }
-          .size{
-            width: 100%;  
-            padding: 5px 0 ;
+          .size {
+            width: 100%;
+            padding: 5px 0;
             box-sizing: border-box;
           }
         }
@@ -792,7 +835,6 @@
         }
       }
     }
-
   }
 }
 
