@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createContext,  useState } from 'react';
 import CompFooter from "./component/CompFooter";
 import CompHeader from "./component/CompHeader";
 import CompMain from "./component/CompMain";
@@ -8,7 +9,6 @@ import CompYou from './component/Portfolio/CompYou';
 import CompEasy from './component/Portfolio/CompEasy';
 import CompLogin from './component/CompLogin';
 import CompMember from './component/CompMember';
-import { createContext, useEffect, useState } from 'react';
 import CompBoardDI from './component/BoardD/CompBoardDI';
 import CompBoardFI from './component/BoardF/CompBoardFI';
 import CompBoardDD from './component/BoardD/CompBoardDD';
@@ -32,16 +32,13 @@ function UserId() {
 function App() {
   const [_isLogin, _setIsLogin] = useState(UserId().userLogin)
   const [_loginId, _setLoginId] = useState(UserId().user.id)
+  const [_auth, _setAuth] = useState(UserId().user.auth)
 
-  useEffect(() => {
-    setTimeout(() => {
-      window.localStorage.setItem('UserStorage','')
-    },1000*30)
-  })
+  
   return (
     <div className="App">
       <BrowserRouter>
-        <AppContext.Provider value={{ _isLogin, _setIsLogin, _loginId, _setLoginId }}>
+        <AppContext.Provider value={{ _isLogin, _setIsLogin, _loginId, _setLoginId,_auth, _setAuth }}>
           <CompHeader></CompHeader>
           <Routes>
             <Route path='/' element={<CompMain />} />

@@ -18,12 +18,28 @@
     }
     .board-d-h{
       height: 30%;
+      .Dpost{
+        cursor: pointer;
+        &:hover{
+          .Text{
+            text-decoration: underline;
+          }
+        }
+      }
       >p{
         height: 33.33%;
       }
     }
     .board-d-c{
       height: 50%;
+      .Dpost{
+        cursor: pointer;
+        &:hover{
+          .Text{
+            text-decoration: underline;
+          }
+        }
+      }
       >p{
         height: 20%;
       }
@@ -40,12 +56,29 @@
     }
     .board-f-h{
       height: 30%;
+      .Fpost{
+        cursor: pointer;
+        &:hover{
+          .Text{
+            text-decoration: underline;
+          }
+        }
+      }
       >p{
         height: 33.33%;
+
       }
     }
     .board-f-c{
       height: 50%;
+      .Fpost{
+        cursor: pointer;
+        &:hover{
+          .Text{
+            text-decoration: underline;
+          }
+        }
+      }
       >p{
         height: 20%;
       }

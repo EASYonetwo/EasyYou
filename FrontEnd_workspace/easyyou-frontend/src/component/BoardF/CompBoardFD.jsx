@@ -13,7 +13,6 @@ const CompBoardFD = () => {
   const [_getData, _setGetData] = useState()
 
   useEffect(() => {
-    (_getData) && console.log(_getData)
     let id
     if (_loginId === undefined) {
       id = null

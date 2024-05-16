@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import BoardService from '../../service/BoardService';
 import CompBoardDT from './CompBoardDT';
 
-
 const CompBoardD = () => {
   const [_numScreen, _setNumScreen] = useState(5)
   const [_currentPage, _setCurrentPage] = useState(1)
@@ -143,11 +142,11 @@ const CompBoardD = () => {
         </table>
       </div>
       <div className='page-nav'>
-        <button onClick={fnClickPrev}>이전</button>
+        <button onClick={fnClickPrev} className='page-prev'>이전</button>
         {
           (_btnArr) && _btnArr.map((v, index) => <button onClick={fnClickBtn} key={index} value={v}>{v}</button>)
         }
-        <button onClick={fnClickNext}>다음</button>
+        <button onClick={fnClickNext} className='page-next'>다음</button>
       </div>
     </div>
   );

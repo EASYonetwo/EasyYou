@@ -2,7 +2,7 @@ import React from 'react';
 
 const CompYou = () => {
   return (
-    <div>
+    <div className='portfolioYou'>
       you's portfolio
     </div>
   );

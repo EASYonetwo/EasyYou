@@ -1,11 +1,16 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom';
 
 const CompDHpost = ({data}) => {
   const { title , user,regdate} = data
+  const navigate = useNavigate()
+  function fnClickhandler (e){
+    navigate("/BoardDD", {state:{data}})
+  }
   return (
-    <div className='Dpost'>
+    <div className='Dpost' onClick={fnClickhandler}>
       <span className='Hot'><FontAwesomeIcon icon={faFire} /></span>
       <p className='Text'>{title}</p>
       <p className='Person'>{user.id}</p>

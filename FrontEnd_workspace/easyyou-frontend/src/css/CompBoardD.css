@@ -107,6 +107,8 @@
   width: 30px;
   margin: 20px 30px;
   border: none;
+  background: none;
+  cursor: pointer;
 }
 .BoardD .page-nav > button.active {
   color: red;
@@ -143,7 +145,7 @@
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 100px;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 .BoardF .BoardF-b .BoardF-table {
   width: 100%;
@@ -157,10 +159,10 @@
   border-bottom: 2px solid #ccc;
 }
 .BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(1) {
-  width: 10%;
+  width: 5%;
 }
 .BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(2) {
-  width: 40%;
+  width: 45%;
 }
 .BoardF .BoardF-b .BoardF-table > thead > tr > th:nth-child(3) {
   width: 15%;
@@ -187,8 +189,10 @@
 }
 .BoardF .page-nav > button {
   width: 30px;
-  margin: 0 30px;
+  margin: 20px 30px;
   border: none;
+  background: none;
+  cursor: pointer;
 }
 .BoardF .page-nav > button.active {
   color: red;
@@ -206,8 +210,11 @@
   position: absolute;
   top: 50%;
   left: 100px;
-  width: 7%;
   transform: translate(0, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
 }
 .BoardDI .BoardDI-b {
   position: relative;
@@ -285,8 +292,11 @@
   position: absolute;
   top: 50%;
   left: 100px;
-  width: 7%;
   transform: translate(0, -50%);
+  border: none;
+  background: none;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 .BoardFI .BoardFI-b {
   position: relative;
@@ -361,6 +371,7 @@
   text-align: center;
   box-sizing: border-box;
   padding: 0 100px;
+  overflow: auto;
 }
 .BoardDD .BoardDD-btns {
   position: relative;
@@ -372,7 +383,10 @@
   position: absolute;
   top: 10%;
   left: 0;
-  width: 8%;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 .BoardDD .BoardDD-btns .delete-btn {
   position: absolute;
@@ -446,7 +460,6 @@
 }
 .BoardDD .BoardDD-comment {
   height: 36vh;
-  overflow: auto;
 }
 .BoardDD .BoardDD-comment .comment-title {
   height: 15%;
@@ -511,8 +524,11 @@
   background: none;
   cursor: pointer;
 }
-.BoardDD .BoardDD-comment .comment-main .comment-btns > button.active > svg > path {
+.BoardDD .BoardDD-comment .comment-main .comment-btns > button.btn-like.active > svg > path {
   fill: red;
+}
+.BoardDD .BoardDD-comment .comment-main .comment-btns > button.btn-hate.active > svg > path {
+  fill: blue;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-btns > button > svg > path {
   fill: black;
@@ -526,35 +542,15 @@
 .BoardDD .BoardDD-comment .comment-main .comment-btns .btn-hate {
   margin-left: 30px;
 }
-.BoardDD .BoardDD-comment .comment-main .comment-navbar {
+.BoardDD .BoardDD-comment .comment-main .comment-delete {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  box-sizing: border-box;
-  padding: 5px;
-}
-.BoardDD .BoardDD-comment .comment-main .comment-navbar > svg {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-.BoardDD .BoardDD-comment .comment-main .comment-navbar .comment-delete {
-  position: absolute;
-  display: none;
-  top: 0;
-  right: 30px;
+  top: 10px;
+  right: 10px;
   width: 50px;
 }
-.BoardDD .BoardDD-comment .comment-main .comment-navbar .comment-delete > button {
+.BoardDD .BoardDD-comment .comment-main .comment-delete > button {
   cursor: pointer;
   width: 100%;
-}
-.BoardDD .BoardDD-comment .comment-main .comment-navbar.active .comment-delete {
-  display: block;
 }
 .BoardDD .BoardDD-comment .comment-comment-main {
   position: relative;
@@ -562,33 +558,68 @@
   text-align: start;
   box-sizing: border-box;
   padding: 10px 50px;
+  padding-right: 10px;
   border: 1px solid black;
   font-size: 0.5em;
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-id {
-  height: 30%;
+  height: 20%;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-input {
+  width: 100%;
+  height: 80%;
+  border-radius: 0;
+  box-sizing: border-box;
+  resize: none;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-inputBtn {
+  position: absolute;
+  right: 0;
+  top: 80%;
+  width: 50px;
+  height: 30px;
+  transform: translate(0, -50%);
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-content {
-  height: 30%;
+  height: 40%;
+  margin-top: 10px;
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date {
-  height: 30%;
+  position: relative;
+  height: 20%;
 }
-.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-navbar {
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  box-sizing: border-box;
-  padding: 5px;
+  margin: 0 5px;
+  border: none;
+  background: none;
   cursor: pointer;
 }
-.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-navbar > svg {
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button.btn-like.active > svg > path {
+  fill: red;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button.btn-hate.active > svg > path {
+  fill: blue;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button > svg > path {
+  fill: black;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button.btn-like {
+  right: 60px;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button.btn-hate {
+  right: 0;
+  margin-left: 30px;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+}
+.BoardDD .BoardDD-comment .comment-comment-main .comment-comment-delete > button {
+  cursor: pointer;
   width: 100%;
-  height: 100%;
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-enter {
   position: absolute;
