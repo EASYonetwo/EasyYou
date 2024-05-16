@@ -21,11 +21,23 @@
 .Main-h .board-d .board-d-h {
   height: 30%;
 }
+.Main-h .board-d .board-d-h .Dpost {
+  cursor: pointer;
+}
+.Main-h .board-d .board-d-h .Dpost:hover .Text {
+  text-decoration: underline;
+}
 .Main-h .board-d .board-d-h > p {
   height: 33.33%;
 }
 .Main-h .board-d .board-d-c {
   height: 50%;
+}
+.Main-h .board-d .board-d-c .Dpost {
+  cursor: pointer;
+}
+.Main-h .board-d .board-d-c .Dpost:hover .Text {
+  text-decoration: underline;
 }
 .Main-h .board-d .board-d-c > p {
   height: 20%;
@@ -43,11 +55,23 @@
 .Main-h .board-f .board-f-h {
   height: 30%;
 }
+.Main-h .board-f .board-f-h .Fpost {
+  cursor: pointer;
+}
+.Main-h .board-f .board-f-h .Fpost:hover .Text {
+  text-decoration: underline;
+}
 .Main-h .board-f .board-f-h > p {
   height: 33.33%;
 }
 .Main-h .board-f .board-f-c {
   height: 50%;
+}
+.Main-h .board-f .board-f-c .Fpost {
+  cursor: pointer;
+}
+.Main-h .board-f .board-f-c .Fpost:hover .Text {
+  text-decoration: underline;
 }
 .Main-h .board-f .board-f-c > p {
   height: 20%;

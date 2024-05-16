@@ -4,8 +4,6 @@ import CompDNpost from './DFpost/CompDNpost';
 import CompFHpost from './DFpost/CompFHpost';
 import CompFNpost from './DFpost/CompFNpost';
 import BoardService from '../service/BoardService';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 
 
 const CompMain = () => {
@@ -26,18 +24,15 @@ const CompMain = () => {
     })
   }, [])
 
-  const jiwonMail = () => {
-    window.open("mailto:2jiwons2@naver.com");
-  };
-  const jiwonTel = () => {
-    window.open("tel:010-4290-7420");
-  };
-  const taeMail = () => {
-    window.open("mailto:bsxorud@naver.com");
-  };
-  const taeTel = () => {
-    window.open("tel:010-5157-4711");
-  };
+  function fnMail (e){
+    window.open(`mailto:${e.target.innerText}`)
+  }
+
+  function fnTel (e){
+    window.open(`tel:${e.target.innerText}`)
+  }
+
+
 
 
   return (
@@ -75,14 +70,14 @@ const CompMain = () => {
         <div className='card-y'>
           <h3>유태경</h3>
           <p>&#91;FrontEnd Developer&#93;</p>
-          <p onClick={taeMail}>bsxorud@naver.com</p>
-          <p onClick={taeTel}>010-5157-4711</p>
+          <p onClick={fnMail}>bsxorud@naver.com</p>
+          <p onClick={fnTel}>010-5157-4711</p>
         </div>
         <div className='card-y'>
           <h3>이지원</h3>
           <p>&#91;BackEnd Developer&#93;</p>
-          <p onClick={jiwonMail}>2jiwons2@naver.com</p>
-          <p onClick={jiwonTel}>010-7420-4290</p>
+          <p onClick={fnMail}>2jiwons2@naver.com</p>
+          <p onClick={fnTel}>010-7420-4290</p>
         </div>
       </div>
     </>

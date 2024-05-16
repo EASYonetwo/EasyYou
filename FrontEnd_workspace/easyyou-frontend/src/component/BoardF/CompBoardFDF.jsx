@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import BoardService from '../../service/BoardService';
+
 
 const CompBoardFDF = ({ data }) => {
-  const { filename, filesize, file } = data
+  const { filename, filesize, file, fileseq } = data
   const [_form, _setForm] = useState()
-  const [_isDownloading,_setIsDownloading] = useState()
 
   useEffect(() => {
     _setForm(data.filename.split('.')[data.filename.split('.').length - 1])
   }, [_form, data])
 
   const fnDownload = () => {
-  };
 
+    if(window.confirm('다운받으시겠습니까?')===true){
+      BoardService.downloadFile(fileseq).then(res => {
+        window.open(res.config.url)
+      })
+    }
+
+  };
 
   return (
     <div>

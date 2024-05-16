@@ -2,18 +2,23 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import BoardService from '../../service/BoardService';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const CompBoardFI = () => {
   const [_title, _setTitle] = useState()
   const [_content, _setContent] = useState()
+  const [_file, _setFile] = useState()
   const { _loginId } = useContext(AppContext)
   const navigate = useNavigate()
 
   function fnSubmit(e) {
     e.preventDefault()
-    const FD = new FormData(e.currentTarget)
+    let FD
+    FD = new FormData(e.currentTarget)
     FD.append("id", _loginId)
-    console.log(Object.fromEntries(FD))
+    if (_file === undefined) {
+      FD.delete('files')
+    }
     BoardService.insertFileBoard(FD).then(res => {
       if (res) {
         alert('게시물이 등록되었습니다.')
@@ -24,7 +29,7 @@ const CompBoardFI = () => {
       alert('로그인한 후에 다시시도해주세요')
       _setTitle()
       _setContent()
-      
+
     });
     e.currentTarget.reset()
   }
@@ -34,7 +39,17 @@ const CompBoardFI = () => {
     navigate('/BoardF')
   }
 
-
+  function fnfileUpload(e) {
+    const target = e.currentTarget
+    const max = 5 * 1024 * 1024
+    let arr = Array.from(target.files).filter(v => v.size < max)
+    if (arr.length === target.files.length) {
+      _setFile(target.value)
+    }
+    else {
+      alert('용량이 큽니다.')
+    }
+  }
 
 
 
@@ -42,7 +57,7 @@ const CompBoardFI = () => {
     <form onSubmit={fnSubmit} encType="multipart/form-data" className='BoardFI'>
       <div className='BoardFI-t'>
         <h3>문의글 입력</h3>
-        <button onClick={() => navigate('/BoardF')}>뒤로가기</button>
+        <button onClick={() => navigate('/BoardF')}><FontAwesomeIcon icon={faArrowLeft} /></button>
       </div>
       <div className='BoardFI-b'>
         <div className='person'>
@@ -59,7 +74,7 @@ const CompBoardFI = () => {
           <textarea value={_content || ''} name='content' onChange={e => _setContent(e.target.value)}></textarea>
         </div>
         <div className='file'>
-          <span>파일</span> <input type="file" name='files' accept="image/jpeg,.txt" multiple />
+          <span>파일</span> <input type="file" name='files' onChange={fnfileUpload} value={_file || ''} accept="image/jpeg,.txt" multiple />
         </div>
       </div>
       <div className='btn'>

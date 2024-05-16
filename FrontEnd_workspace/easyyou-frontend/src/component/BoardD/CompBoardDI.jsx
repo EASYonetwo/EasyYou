@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BoardService from '../../service/BoardService';
 import { AppContext } from '../../App';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 const CompBoardDI = () => {
   const [_title, _setTitle] = useState()
   const [_content, _setContent] = useState()
@@ -36,8 +37,8 @@ const CompBoardDI = () => {
   return (
     <div className='BoardDI'>
       <div className='BoardDI-t'>
-        <h3>문의글 입력</h3>
-        <button onClick={() => navigate('/BoardD')}>뒤로가기</button>
+        <h3>댓글 게시판 작성 페이지</h3>
+        <button onClick={() => navigate('/BoardD')}><FontAwesomeIcon icon={faArrowLeft} /></button>
       </div>
       <div className='BoardDI-b'>
         <div className='person'>

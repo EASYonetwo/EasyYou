@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createContext,  useState } from 'react';
 import CompFooter from "./component/CompFooter";
 import CompHeader from "./component/CompHeader";
 import CompMain from "./component/CompMain";
@@ -8,7 +9,6 @@ import CompYou from './component/Portfolio/CompYou';
 import CompEasy from './component/Portfolio/CompEasy';
 import CompLogin from './component/CompLogin';
 import CompMember from './component/CompMember';
-import { createContext, useEffect, useState } from 'react';
 import CompBoardDI from './component/BoardD/CompBoardDI';
 import CompBoardFI from './component/BoardF/CompBoardFI';
 import CompBoardDD from './component/BoardD/CompBoardDD';
