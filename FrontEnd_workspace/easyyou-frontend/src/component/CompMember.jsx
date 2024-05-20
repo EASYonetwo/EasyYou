@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CompMember = () => {
   const [_id, _setId] = useState()
   const [_pw, _setPw] = useState()
-  const [_sel, _setSel] = useState()
+  const [_sel, _setSel] = useState('U')
   const navigate = useNavigate()
   function fnIdCheck(e) {
     e.preventDefault();
@@ -36,18 +36,11 @@ const CompMember = () => {
   }
   function fnComplete(e) {
     e.preventDefault()
-    let result
-    if (_sel === "You's") {
-      result = 'U'
-    }
-    else {
-      result = 'L'
-    }
 
     const data = {
       id: _id,
       password: _pw,
-      auth: result
+      auth: _sel
     }
     UserService.join(data);
     alert('회원가입완료')
@@ -76,10 +69,10 @@ const CompMember = () => {
           <input type="text" value={_pw || ''} onChange={e => _setPw(e.target.value)} placeholder='비밀번호를 입력해 주세요' maxLength='8' disabled required />
         </div>
         <div className='port_se'>
-          <span>누구의 포트폴리오를 보고 싶으십니까?</span>
-          <select name="portfolio" onClick={() => { _setSel(document.querySelector('.port_se > select').value) }} >
-            <option value="Easy's">유태경</option>
-            <option value="You's">이지원</option>
+          <span>누구의 포트폴리오를 보고 싶으십니까?</span>{/* document.querySelector('.port_se > select').value */}
+          <select name="portfolio" onClick={(e) => { _setSel(e.target.value) }} >
+            <option value="U">유태경</option>
+            <option value="L">이지원</option>
           </select>
         </div>
         <button className='Member_btn' disabled>회원가입</button>

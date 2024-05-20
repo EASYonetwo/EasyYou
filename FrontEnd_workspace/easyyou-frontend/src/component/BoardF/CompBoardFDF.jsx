@@ -23,7 +23,7 @@ const CompBoardFDF = ({ data }) => {
   return (
     <div>
       <div className='main-img'  >
-        {(_form) && (_form === 'jpg' || _form === 'png' || _form === 'jpeg') ? <img src={`data:image/${_form};base64,${file}`} alt="" /> : <img src="/img/notImg.png" alt="" />}
+        {(_form) && (_form === 'jpg' || _form === 'png' || _form === 'jpeg') && <img src={`data:image/${_form};base64,${file}`} alt="" />}
       </div>
       <div className='main-file'>
         <span className='name'>{(data) && filename}</span>

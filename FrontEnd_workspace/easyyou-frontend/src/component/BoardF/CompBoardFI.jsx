@@ -41,13 +41,18 @@ const CompBoardFI = () => {
 
   function fnfileUpload(e) {
     const target = e.currentTarget
-    const max = 5 * 1024 * 1024
+    const max = 10 * 1024 * 1024
     let arr = Array.from(target.files).filter(v => v.size < max)
-    if (arr.length === target.files.length) {
-      _setFile(target.value)
+    if(target.files.length>5){
+      alert('5개까지만 가능합니다.')
     }
-    else {
-      alert('용량이 큽니다.')
+    else{
+      if (arr.length === target.files.length) {
+        _setFile(target.value)
+      }
+      else {
+        alert('10MB넘으면 불가능 합니다.')
+      }
     }
   }
 

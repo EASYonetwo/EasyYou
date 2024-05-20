@@ -382,11 +382,11 @@
   }
 }
 .BoardDD {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
   text-align: center;
   box-sizing: border-box;
-  padding: 0 100px;
+  padding: 0 10px;
   overflow: auto;
   .BoardDD-btns {
     position: relative;
@@ -465,10 +465,17 @@
       border: none;
       background: none;
       cursor: pointer;
-      &.active {
+      &.like.active {
         > svg {
           > path {
             fill: red;
+          }
+        }
+      }
+      &.disLike.active {
+        > svg {
+          > path {
+            fill: blue;
           }
         }
       }
@@ -762,10 +769,17 @@
       border: none;
       background: none;
       cursor: pointer;
-      &.active {
+      &.like.active {
         > svg {
           > path {
             fill: red;
+          }
+        }
+      }
+      &.disLike.active {
+        > svg {
+          > path {
+            fill: blue;
           }
         }
       }
