@@ -366,11 +366,11 @@
 }
 
 .BoardDD {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
   text-align: center;
   box-sizing: border-box;
-  padding: 0 100px;
+  padding: 0 10px;
   overflow: auto;
 }
 .BoardDD .BoardDD-btns {
@@ -452,8 +452,11 @@
   background: none;
   cursor: pointer;
 }
-.BoardDD .BoardDD-likeHate > button.active > svg > path {
+.BoardDD .BoardDD-likeHate > button.like.active > svg > path {
   fill: red;
+}
+.BoardDD .BoardDD-likeHate > button.disLike.active > svg > path {
+  fill: blue;
 }
 .BoardDD .BoardDD-likeHate > button > svg > path {
   fill: black;
@@ -721,8 +724,11 @@
   background: none;
   cursor: pointer;
 }
-.BoardFD .BoardFD-likeHate > button.active > svg > path {
+.BoardFD .BoardFD-likeHate > button.like.active > svg > path {
   fill: red;
+}
+.BoardFD .BoardFD-likeHate > button.disLike.active > svg > path {
+  fill: blue;
 }
 .BoardFD .BoardFD-likeHate > button > svg > path {
   fill: black;

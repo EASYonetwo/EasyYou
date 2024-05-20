@@ -4,28 +4,29 @@
 }
 .portfolio-y .portfolio-img {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  width: 50%;
   height: 85%;
-  box-sizing: border-box;
-  padding: 0 100px;
+  margin: 0 auto;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 4px 4px 2px #AAA;
+  overflow-x: hidden;
 }
 .portfolio-y .portfolio-img .img {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  width: 100%;
   height: 40%;
-  border: 1px solid black;
   background-color: #eee;
   border-radius: 5px;
   box-shadow: 4px 4px 2px #BBB, -2px -2px 2px white;
   box-sizing: border-box;
-  margin: 0 10px;
 }
 .portfolio-y .portfolio-img .img > img {
-  width: 90%;
+  width: 100%;
   height: 100%;
   border: 1px solid black;
 }
@@ -36,7 +37,7 @@
 }
 .portfolio-y .showPortfolio {
   position: absolute;
-  top: 85%;
+  top: 88%;
   left: 50%;
   width: 20%;
   height: 10%;
