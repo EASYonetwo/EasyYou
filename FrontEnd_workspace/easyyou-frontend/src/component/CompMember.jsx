@@ -20,6 +20,7 @@ const CompMember = () => {
     }
     else {
       if (window.confirm('사용하시겠습니까?') === true) {
+        document.querySelector('.Member_id > input').setAttribute('readonly',true)
         document.querySelector('.Member_pw > input').removeAttribute('disabled')
         document.querySelector('.Member_pw > input').focus()
       }
