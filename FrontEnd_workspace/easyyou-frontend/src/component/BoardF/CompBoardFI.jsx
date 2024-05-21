@@ -5,8 +5,8 @@ import BoardService from '../../service/BoardService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const CompBoardFI = () => {
-  const [_title, _setTitle] = useState()
-  const [_content, _setContent] = useState()
+  const [_title, _setTitle] = useState('')
+  const [_content, _setContent] = useState('')
   const [_file, _setFile] = useState()
   const { _loginId } = useContext(AppContext)
   const navigate = useNavigate()
@@ -43,10 +43,10 @@ const CompBoardFI = () => {
     const target = e.currentTarget
     const max = 10 * 1024 * 1024
     let arr = Array.from(target.files).filter(v => v.size < max)
-    if(target.files.length>5){
+    if (target.files.length > 5) {
       alert('5개까지만 가능합니다.')
     }
-    else{
+    else {
       if (arr.length === target.files.length) {
         _setFile(target.value)
       }
@@ -61,8 +61,11 @@ const CompBoardFI = () => {
   return (
     <form onSubmit={fnSubmit} encType="multipart/form-data" className='BoardFI'>
       <div className='BoardFI-t'>
-        <h3>문의글 입력</h3>
-        <button onClick={() => navigate('/BoardF')}><FontAwesomeIcon icon={faArrowLeft} /></button>
+        <h3>파일 게시판 작성 페이지</h3>
+        <button onClick={(e) => {
+          if (window.confirm('돌아가시겠습니까?') === true) { navigate('/BoardF') } else { e.preventDefault() }
+        }
+        }><FontAwesomeIcon icon={faArrowLeft} /></button>
       </div>
       <div className='BoardFI-b'>
         <div className='person'>
@@ -78,7 +81,7 @@ const CompBoardFI = () => {
           <textarea value={_content || ''} name='content' onChange={e => _setContent(e.target.value)}></textarea>
         </div>
         <div className='file'>
-          <span>파일</span> <input type="file" name='files' onChange={fnfileUpload} value={_file || ''} accept="image/jpeg,.txt" multiple />
+          <span>파일</span> <input type="file" name='files' onChange={fnfileUpload} value={_file || ''} multiple />
         </div>
       </div>
       <div className='btn'>

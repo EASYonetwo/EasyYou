@@ -10,8 +10,12 @@ const CompHeader = () => {
   function fnClickHander() {
     document.querySelector(`.Board_main`).classList.toggle('active')
   }
-  function fnCancleHander() {
+  function fnCancleHander(e) {
     document.querySelector(`.Board_main`).classList.remove('active')
+    document.querySelectorAll('.nav > li > a').forEach(v=>{
+      v.classList.remove('active')
+    })
+    e.target.classList.add('active')
   }
   function fnLogOut() {
     _setIsLogin(false)

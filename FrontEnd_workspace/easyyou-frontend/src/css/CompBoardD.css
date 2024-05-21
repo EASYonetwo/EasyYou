@@ -453,10 +453,10 @@
   cursor: pointer;
 }
 .BoardDD .BoardDD-likeHate > button.like.active > svg > path {
-  fill: red;
+  fill: #3282F6;
 }
 .BoardDD .BoardDD-likeHate > button.disLike.active > svg > path {
-  fill: blue;
+  fill: #F65834;
 }
 .BoardDD .BoardDD-likeHate > button > svg > path {
   fill: black;
@@ -528,10 +528,10 @@
   cursor: pointer;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-btns > button.btn-like.active > svg > path {
-  fill: red;
+  fill: #3282F6;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-btns > button.btn-hate.active > svg > path {
-  fill: blue;
+  fill: #F65834;
 }
 .BoardDD .BoardDD-comment .comment-main .comment-btns > button > svg > path {
   fill: black;
@@ -597,10 +597,10 @@
   cursor: pointer;
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button.btn-like.active > svg > path {
-  fill: red;
+  fill: #3282F6;
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button.btn-hate.active > svg > path {
-  fill: blue;
+  fill: #F65834;
 }
 .BoardDD .BoardDD-comment .comment-comment-main .comment-comment-date > button > svg > path {
   fill: black;
@@ -723,10 +723,10 @@
   cursor: pointer;
 }
 .BoardFD .BoardFD-likeHate > button.like.active > svg > path {
-  fill: red;
+  fill: #3282F6;
 }
 .BoardFD .BoardFD-likeHate > button.disLike.active > svg > path {
-  fill: blue;
+  fill: #F65834;
 }
 .BoardFD .BoardFD-likeHate > button > svg > path {
   fill: black;
