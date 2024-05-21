@@ -51,6 +51,7 @@ const CompMain = () => {
               _DCarr.map(v => <CompDNpost data={v} key={v.boardseq} />)
             }
           </div>
+          
         </div>
         <div className='board-f'>
           <h2>파일 게시판</h2>

@@ -39,7 +39,7 @@ const CompBoardDDDDI = ({ id, seq }) => {
       <textarea className='comment-comment-input' onChange={fnChangeInput} value={_input || ''}>
 
       </textarea>
-      <button className='comment-comment-inputBtn' onClick={fnInputBtn}>버튼</button>
+      <button className='comment-comment-inputBtn' onClick={fnInputBtn}>작성</button>
       <span className='comment-comment-enter'>
         <FontAwesomeIcon icon={faArrowTurnUp} />
       </span>

@@ -68,7 +68,6 @@ const CompBoardFI = () => {
         <div className='person'>
           <span>작성자</span>
           <span>{_loginId}</span>
-          {/* <input type="text" name="id" defaultValue={_loginId} style={{"background":'none',"border":'none'}}/> */}
         </div>
         <div className='title'>
           <span>제목</span>
