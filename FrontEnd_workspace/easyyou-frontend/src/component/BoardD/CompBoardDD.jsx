@@ -161,7 +161,7 @@ const CompBoardDD = () => {
         </div>
         <div className='comment-input'>
           <textarea onChange={fnComment} value={_comment || ''}></textarea>
-          <button onClick={fnClickComment}>버튼</button>
+          <button onClick={fnClickComment}>작성</button>
         </div>
 
         {
