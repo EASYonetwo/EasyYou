@@ -44,7 +44,7 @@ const CompMember = () => {
     }
     UserService.join(data);
     alert('회원가입완료')
-    navigate('/login')
+    navigate('/Login')
   }
 
   useEffect(() => {

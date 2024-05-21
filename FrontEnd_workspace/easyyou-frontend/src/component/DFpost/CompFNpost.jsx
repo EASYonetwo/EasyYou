@@ -12,7 +12,7 @@ const CompFNpost = ({ data }) => {
     (data.filename!==null)&&_setForm(data.filename.split('.')[data.filename.split('.').length - 1])
   }, [_form, data])
 
-  function fnClickhandler() {
+  function fnClickhandler(e) {
     navigate("/BoardFD", { state: { data } })
   }
 
