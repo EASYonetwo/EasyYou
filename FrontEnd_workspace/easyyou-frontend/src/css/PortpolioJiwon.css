@@ -1,8 +1,9 @@
 .portpolio-j {
   width: 80%;
-  height: 54vh;
+  height: 84vh;
   margin: 0 auto;
-  padding: 30px 100px;
+  box-sizing: border-box;
+  padding-top: 30px;
 }
 .portpolio-j > h2 {
   text-align: center;
@@ -18,6 +19,9 @@
   text-align: center;
   line-height: 30px;
   margin: 0 auto;
+}
+.portpolio-j > div .plusBtn:hover {
+  cursor: pointer;
 }
 .portpolio-j > div > p {
   font-size: 10px;
