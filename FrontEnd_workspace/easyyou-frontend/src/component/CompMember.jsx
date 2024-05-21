@@ -61,12 +61,12 @@ const CompMember = () => {
         <h3>회원가입</h3>
         <div className='Member_id'>
           <span>아이디*</span>
-          <input type="text" value={_id || ''} onChange={e => _setId(e.target.value)} placeholder='아이디를 입력해 주세요' maxLength='8' required />
+          <input type="text" value={_id || ''} onChange={e => _setId(e.target.value)} placeholder='아이디를 입력해 주세요' minLength='4'maxLength='12' required />
           <button onClick={fnIdCheck}>중복검사</button>
         </div>
         <div className='Member_pw'>
           <span>비밀번호*</span>
-          <input type="text" value={_pw || ''} onChange={e => _setPw(e.target.value)} placeholder='비밀번호를 입력해 주세요' maxLength='8' disabled required />
+          <input type="password" value={_pw || ''} onChange={e => _setPw(e.target.value)} placeholder='비밀번호를 입력해 주세요'minLength='4'maxLength='12' disabled required />
         </div>
         <div className='port_se'>
           <span>누구의 포트폴리오를 보고 싶으십니까?</span>{/* document.querySelector('.port_se > select').value */}

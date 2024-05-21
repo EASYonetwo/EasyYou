@@ -5,8 +5,8 @@ import { AppContext } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 const CompBoardDI = () => {
-  const [_title, _setTitle] = useState()
-  const [_content, _setContent] = useState()
+  const [_title, _setTitle] = useState('')
+  const [_content, _setContent] = useState('')
   const { _loginId } = useContext(AppContext)
   const navigate = useNavigate()
 
@@ -16,7 +16,7 @@ const CompBoardDI = () => {
       title: _title,
       content: _content,
       id: loginId
-    }
+    } 
     BoardService.insertReplyBoard(postArr).then(res => {
       if (res) {
         alert('게시물이 등록되었습니다.')
@@ -38,7 +38,7 @@ const CompBoardDI = () => {
     <div className='BoardDI'>
       <div className='BoardDI-t'>
         <h3>댓글 게시판 작성 페이지</h3>
-        <button onClick={() => navigate('/BoardD')}><FontAwesomeIcon icon={faArrowLeft} /></button>
+        <button onClick={() => {if(window.confirm('돌아가시겠습니까?')===true){navigate('/BoardD')}}}><FontAwesomeIcon icon={faArrowLeft} /></button>
       </div>
       <div className='BoardDI-b'>
         <div className='person'>
