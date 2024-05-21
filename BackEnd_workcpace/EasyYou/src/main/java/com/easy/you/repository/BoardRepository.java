@@ -14,7 +14,7 @@ public interface BoardRepository extends JpaRepository<BoardVo, Long>{
 	List<BoardVo> findTop5ByBtypeAndDelflagOrderByRegdateDesc(String btype, String delflag);
 	
 	// 최신 순서대로 최대 5개의 글을 가져옴 - 파일	
-	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , f.file AS file "
+	@Query("SELECT b.boardseq AS boardseq, b.user AS user, b.title AS title, b.content AS content, b.btype AS btype, b.delflag AS delflag, b.regdate AS regdate , f.file AS file , f.filename AS filename "
 			+ "FROM BoardVo b " + "LEFT JOIN FileStorageVo f ON f.board.boardseq = b.boardseq "
 			+ "WHERE b.btype = 'F' AND b.delflag = 'N' " 
 			+ "ORDER BY b.regdate DESC")

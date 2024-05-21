@@ -12,4 +12,5 @@ public interface BoardRepositoryInterfaceFile {
 	String getDelflag();
 	Date getRegdate();
 	byte[] getFile();
+	String getFilename();
 }
