@@ -68,7 +68,7 @@ const CompLogin = () => {
           <FontAwesomeIcon icon={_icon} onClick={fnClickHander} className='eye_h' />
         </div>
         <button className='Login_btn' onClick={fnLogin}>로그인</button>
-        <button className='Member_btn' onClick={(e) => { e.preventDefault(); navigate('/member') }}>회원가입</button>
+        <button className='Member_btn' onClick={(e) => { e.preventDefault(); navigate('/Member')}}>회원가입</button>
       </form>
     </div>
   );

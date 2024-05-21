@@ -50,7 +50,7 @@ function App() {
             <Route path='/BoardFD' element={<CompBoardFD />} />
             <Route path='/YouPort' element={<CompYou />} />
             <Route path='/EasyPort' element={<CompEasy />} />
-            <Route path='/login' element={<CompLogin />} />
+            <Route path='/Login' element={<CompLogin />} />
             <Route path='/Member' element={<CompMember />} />
           </Routes>
         </AppContext.Provider>

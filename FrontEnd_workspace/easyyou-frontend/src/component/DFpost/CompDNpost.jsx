@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const CompDNpost = ({data}) => {
   const { title , user,regdate} = data
   const navigate = useNavigate()
+
   function fnClickhandler (e){
     navigate("/BoardDD", {state:{data}})
   }
