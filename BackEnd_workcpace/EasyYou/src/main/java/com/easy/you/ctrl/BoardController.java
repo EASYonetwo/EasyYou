@@ -190,12 +190,12 @@ public class BoardController {
 		String title = (String)map.get("title");
 		String content = (String)map.get("content");
 		
-		if(title == "") {
+		if(title.trim()== "") {
 			boardVo.setTitle("제목없음");
 		}else {
 			boardVo.setTitle(title);
 		}
-		if(content == "") {
+		if(content.trim() == "") {
 			boardVo.setContent("내용없음");
 		}else {
 			boardVo.setContent(content);
